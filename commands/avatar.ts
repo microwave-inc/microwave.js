@@ -3,8 +3,9 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports.help = {
     name: "avatar",
+    cat: "Discord",
     description: "Get the avatar of you or someone else",
-    aliases: "pong",
+    aliases: "",
     data: new SlashCommandBuilder().setName("avatar").setDescription("Get the avatar of you or someone else"),
 };
 
@@ -27,8 +28,6 @@ module.exports.run = async (client, message, args) => {
 
         if (/<@(\d+)>/g.test(args[0]) === true) {
             let e = /<@(\d+)>/g.exec(args[0]);
-
-            console.log(e);
 
             userID = e[1];
         } else {
