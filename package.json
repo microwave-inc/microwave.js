@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "@discordjs/builders": "^0.15.0",
+    "@discordjs/rest": "^0.5.0",
+    "discord": "^0.8.2",
+    "discord-api-types": "^0.36.2",
+    "dotenv": "^16.0.1"
+  },
+  "name": "microwave",
+  "version": "3.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "eslint": "^8.20.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/microwave-inc/microwave.js.git"
+  },
+  "author": "Microwave Inc.",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/microwave-inc/microwave.js/issues"
+  },
+  "homepage": "https://github.com/microwave-inc/microwave.js#readme",
+  "description": ""
+}
