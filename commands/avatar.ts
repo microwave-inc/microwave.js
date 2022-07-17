@@ -30,7 +30,7 @@ module.exports.run = async (client, message, args) => {
 
             console.log(e);
 
-            userID = e[1];
+            userID = e[1]; //Not an error - Ayden
         } else {
             userID = args[0];
         }
