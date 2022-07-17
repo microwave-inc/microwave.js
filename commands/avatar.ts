@@ -34,11 +34,12 @@ module.exports.run = async (client, message, args) => {
             userID = args[0];
         }
 
-        var i = client.users.cache.find((i1) => i == userID);
+        var i = client.users.cache.find((i1) => i1 == userID);
 
         if (i === undefined) {
             //call for help
             message.channel.send("The user referenced is invaild");
+            return;
         }
 
         client.users.fetch(userID).then((user) => {

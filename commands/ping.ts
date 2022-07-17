@@ -1,4 +1,4 @@
-const { SlashCommandBuilder } = require("@discordjs/builders");
+const { SlashCommandBuilder } = require("@discordjs/builders"); //Also not an error - Ayden
 
 module.exports.help = {
   name: "ping",
