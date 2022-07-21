@@ -2,11 +2,11 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Permissions } = require('discord.js');
 
 module.exports.help = {
-    name: "ban",
+    name: "unban",
     cat: "Mod",
-    description: "Bans a mentioned user",
+    description: "Unbans a mentioned user",
     aliases: "",
-    data: new SlashCommandBuilder().setName("ban").setDescription("Bans a mentioned user"),
+    data: new SlashCommandBuilder().setName("unban").setDescription("Unbans a mentioned user"),
 };
 
 //If interaction command
@@ -35,9 +35,9 @@ module.exports.run = async (client, message, args) => {
             return;
         }
 
-        message.guild.members.ban(userID)
+        message.guild.members.unban(userID)
             .then(j => {
-                message.channel.send(`:white_check_mark: User was banned from ${message.guild.name}`);
+                message.channel.send(`:white_check_mark: User was unbanned from ${message.guild.name}`);
             });
     } else {
         message.channel.send("You need `BAN_MEMBERS` permisions to run this command")

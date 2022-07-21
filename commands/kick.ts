@@ -39,5 +39,7 @@ module.exports.run = async (client, message, args) => {
             .then(j => {
                 message.channel.send(`:white_check_mark: User was kicked from ${message.guild.name}`);
             });
+    } else {
+        message.channel.send("You need `KICK_MEMBERS` permisions to run this command")
     }
 };
