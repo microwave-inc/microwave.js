@@ -4,7 +4,7 @@ module.exports.help = {
   name: "ping",
   description: "The command to make sure everything is working",
   aliases: "pong",
-  data: new SlashCommandBuilder().setName("ping").setDescription("The test command"),
+  data: new SlashCommandBuilder().setName("ping").setDescription("Pong!"),
 };
 
 //If interaction command

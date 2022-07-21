@@ -1,5 +1,7 @@
 *env*
 *.db
 config*
+thing*
 node_modules
-*vs*
+.vscode
+.vs

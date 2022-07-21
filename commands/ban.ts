@@ -11,7 +11,8 @@ module.exports.help = {
 
 //If interaction command
 module.exports.interaction = async (interaction, client) => {
-    //Not doing this - Ally
+    //Ez fix for ya -Ayden
+    return interaction.reply({ content: "Uh oh, this is currently in testing please use the prefixed command instead", ephemeral: true });
 };
 
 //If normal command
