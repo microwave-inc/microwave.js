@@ -41,7 +41,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
         } 
       }); 
    
-      interaction.reply({ embeds: [aEmbed] }); 
+      interaction.reply({ embeds: [aEmbed] }); //might make this ephemeral -Ayden
     }); 
   
  };

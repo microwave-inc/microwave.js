@@ -12,7 +12,7 @@ module.exports.help = {
 //If interaction command
 module.exports.interaction = async (interaction, client) => {
     //Ez fix for ya -Ayden
-    return interaction.reply({ content: "Uh oh, this is currently in testing please use the prefixed command instead", ephemeral: true });
+    return interaction.reply({ content: "Uh oh, this has not been implemented yet.", ephemeral: true });
 };
 
 //If normal command
@@ -40,7 +40,5 @@ module.exports.run = async (client, message, args) => {
             .then(j => {
                 message.channel.send(`:white_check_mark: User was banned from ${message.guild.name}`);
             });
-    } else {
-        message.channel.send("You need `BAN_MEMBERS` permisions to run this command")
     }
 };
