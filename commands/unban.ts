@@ -6,13 +6,29 @@ module.exports.help = {
     cat: "Mod",
     description: "Unbans a mentioned user",
     aliases: "",
-    data: new SlashCommandBuilder().setName("unban").setDescription("Unbans a mentioned user"),
+    data: new SlashCommandBuilder().setName("unban").setDescription("Unbans a mentioned user").addUserOption(option => {
+        return option
+        .setName("user")
+        .setDescription("The user to unban")
+        .setRequired(true)
+    }),
 };
 
 //If interaction command
 module.exports.interaction = async (interaction, client) => {
     //Not doing this - Ally
-    return interaction.reply({ content: "Uh oh, this has not been implemented yet.", ephemeral: true });
+    //Tada, did it for you -Ayden
+    if (!interaction.guild) {
+        return interaction.reply({ content: "This command can only be used in a server.", ephemeral: true });
+    }
+        if (interaction.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+            const user = interaction.options.getUser("user");
+            if (!user) {
+                return interaction.reply({ content: "Please mention a user to unban.", ephemeral: true });
+            }
+            await interaction.guild.members.unban(user.id)
+            return interaction.reply({ content: `Successfully unbanned ${user.tag}` });
+        }
 };
 
 //If normal command

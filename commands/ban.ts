@@ -6,13 +6,29 @@ module.exports.help = {
     cat: "Mod",
     description: "Bans a mentioned user",
     aliases: "",
-    data: new SlashCommandBuilder().setName("ban").setDescription("Bans a mentioned user"),
+    data: new SlashCommandBuilder().setName("ban").setDescription("Bans a mentioned user").addUserOption(option => {
+        return option
+        .setName("user")
+        .setDescription("The user to ban")
+        .setRequired(true)
+    }),
 };
 
 //If interaction command
 module.exports.interaction = async (interaction, client) => {
     //Ez fix for ya -Ayden
-    return interaction.reply({ content: "Uh oh, this has not been implemented yet.", ephemeral: true });
+    //Tada, did it for you -Ayden
+    if (!interaction.guild) {
+        return interaction.reply({ content: "This command can only be used in a server.", ephemeral: true });
+    }
+        if (interaction.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+            const user = interaction.options.getUser("user");
+            if (!user) {
+                return interaction.reply({ content: "Please mention a user to ban.", ephemeral: true });
+            }
+            await interaction.guild.members.ban(user.id)
+            return interaction.reply({ content: `Successfully banned ${user.tag}` });
+        }
 };
 
 //If normal command

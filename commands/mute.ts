@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Permissions } = require('discord.js');
+const { MessageEmbed } = require('discord.js'); // you forgot something -Ayden
 
 module.exports.help = {
     name: "mute",
@@ -45,7 +46,7 @@ module.exports.run = async (client, message, args) => {
                     if (mutedRole === undefined) {
                         var errorEmbed = new MessageEmbed()
                             .setColor("#B00020")
-                            .setTitle("Muted role wasn't found! Create it with !muted createRole.");
+                            .setTitle("Muted role wasn't found! Create it with m!mute createrole."); //FIxed for ya -Ayden
 
                         message.channel.send({ embeds: [errorEmbed] });
                     }

@@ -6,14 +6,30 @@ module.exports.help = {
     cat: "Mod",
     description: "Kicks a mentioned user",
     aliases: "",
-    data: new SlashCommandBuilder().setName("kick").setDescription("Kicks a mentioned user"),
+    data: new SlashCommandBuilder().setName("kick").setDescription("Kicks a mentioned user").addUserOption(option => {
+        return option
+        .setName("user")
+        .setDescription("The user to kick")
+        .setRequired(true)
+    })
 };
 
 //If interaction command
 module.exports.interaction = async (interaction, client) => {
     //Ez fix for ya -Ayden
-    return interaction.reply({ content: "Uh oh, this has not been implemented yet.", ephemeral: true });
-};
+    //Tada, did it for you -Ayden
+    if (!interaction.guild) {
+        return interaction.reply({ content: "This command can only be used in a server.", ephemeral: true });
+    }
+        if (interaction.member.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) {
+            const user = interaction.options.getUser("user");
+            if (!user) {
+                return interaction.reply({ content: "Please mention a user to kick.", ephemeral: true });
+            }
+            await interaction.guild.members.kick(user.id)
+            return interaction.reply({ content: `Successfully kicked ${user.tag}` });
+        }
+}
 
 //If normal command
 module.exports.run = async (client, message, args) => {
