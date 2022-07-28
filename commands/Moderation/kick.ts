@@ -2,41 +2,44 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 const { Permissions } = require('discord.js');
 
 module.exports.help = {
-    name: "unban",
-    cat: "Mod",
-    description: "Unbans a mentioned user",
+    name: "kick",
+    cat: "Moderation",
+    description: "Kicks a mentioned user",
     aliases: "",
-    data: new SlashCommandBuilder().setName("unban").setDescription("Unbans a mentioned user").addUserOption(option => {
+    data: new SlashCommandBuilder().setName("kick").setDescription("Kicks a mentioned user").addUserOption(option => {
         return option
         .setName("user")
-        .setDescription("The user to unban")
+        .setDescription("The user to kick")
         .setRequired(true)
-    }),
+    })
 };
 
 //If interaction command
 module.exports.interaction = async (interaction, client) => {
-    //Not doing this - Ally
+    //Ez fix for ya -Ayden
     //Tada, did it for you -Ayden
     if (!interaction.guild) {
         return interaction.reply({ content: "This command can only be used in a server.", ephemeral: true });
     }
-        if (interaction.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+        if (interaction.member.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) {
             const user = interaction.options.getUser("user");
             if (!user) {
-                return interaction.reply({ content: "Please mention a user to unban.", ephemeral: true });
+                return interaction.reply({ content: "Please mention a user to kick.", ephemeral: true });
             }
-            await interaction.guild.members.unban(user.id)
-            return interaction.reply({ content: `Successfully unbanned ${user.tag}` });
+            if (user === interaction.member) {
+                return interaction.reply({ content: "You can't kick yourself.", ephemeral: true });
+            }
+            await interaction.guild.members.kick(user.id)
+            return interaction.reply({ content: `Successfully kicked ${user.tag}` });
         }
     else {
-        interaction.reply({ content: "You need `BAN_MEMBERS` permisions to run this command", ephemeral: true });
+        interaction.reply({ content: "You need `KICK_MEMBERS` permisions to run this command", ephemeral: true });
     }
-};
+}
 
 //If normal command
 module.exports.run = async (client, message, args) => {
-    if (message.member.permissions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+    if (message.member.permissions.has(Permissions.FLAGS.KICK_MEMBERS)) {
         var userID;
 
         if (/<@(\d+)>/g.test(args[0]) === true) {
@@ -55,11 +58,11 @@ module.exports.run = async (client, message, args) => {
             return;
         }
 
-        message.guild.members.unban(userID)
+        message.guild.members.kick(userID)
             .then(j => {
-                message.channel.send(`:white_check_mark: User was unbanned from ${message.guild.name}`);
+                message.channel.send(`:white_check_mark: User was kicked from ${message.guild.name}`);
             });
     } else {
-        message.channel.send("You need `BAN_MEMBERS` permisions to run this command")
+        message.channel.send("You need `KICK_MEMBERS` permisions to run this command")
     }
 };

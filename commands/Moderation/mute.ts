@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js'); // you forgot something -Ayden
 
 module.exports.help = {
     name: "mute",
-    cat: "Mod",
+    cat: "Moderation",
     description: "Mutes a mentioned user",
     aliases: "",
     data: new SlashCommandBuilder().setName("mute").setDescription("Mutes a mentioned user"),

@@ -3,7 +3,7 @@ const { Permissions } = require('discord.js');
 
 module.exports.help = {
     name: "ban",
-    cat: "Mod",
+    cat: "Moderation",
     description: "Bans a mentioned user",
     aliases: "",
     data: new SlashCommandBuilder().setName("ban").setDescription("Bans a mentioned user").addUserOption(option => {
