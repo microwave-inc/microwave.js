@@ -29,6 +29,9 @@ module.exports.interaction = async (interaction, client) => {
             await interaction.guild.members.kick(user.id)
             return interaction.reply({ content: `Successfully kicked ${user.tag}` });
         }
+    else {
+        interaction.reply({ content: "You need `KICK_MEMBERS` permisions to run this command", ephemeral: true });
+    }
 }
 
 //If normal command

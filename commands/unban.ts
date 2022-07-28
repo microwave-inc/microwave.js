@@ -29,6 +29,9 @@ module.exports.interaction = async (interaction, client) => {
             await interaction.guild.members.unban(user.id)
             return interaction.reply({ content: `Successfully unbanned ${user.tag}` });
         }
+    else {
+        interaction.reply({ content: "You need `BAN_MEMBERS` permisions to run this command", ephemeral: true });
+    }
 };
 
 //If normal command
