@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
 const { Permissions } = require("discord.js");
+const wait = require('node:timers/promises').setTimeout;
 
 module.exports.help = {
     name: "purge",
@@ -30,7 +31,9 @@ module.exports.interaction = async (interaction, client) => {
             return interaction.reply({ content: "You can only purge at least 1 message.", ephemeral: true });
         }
         await interaction.channel.bulkDelete(number);
-        return interaction.reply({ content: `Successfully purged ${number} messages` });
+        await interaction.reply({ content: `Successfully purged ${number} messages` });
+        await wait(5000);
+        await interaction.deleteReply();
     }
     else {
         interaction.reply({ content: "You need `MANAGE_MESSAGES` permisions to run this command", ephemeral: true });
@@ -56,8 +59,10 @@ module.exports.run = async (client, message, args) => {
             message.channel.send("You can only purge at least 1 message.");
             return;
         } 
-        await message.channel.bulkDelete(number);
-        message.channel.send(`Successfully purged ${number} messages`);
+        await message.channel.bulkDelete(number + 1);
+        await message.channel.send(`Successfully purged ${number} messages`).then(msg => {
+            wait(5000); msg.delete();
+        })
     } else {
         message.channel.send("You need `MANAGE_MESSAGES` permisions to run this command")
     }
