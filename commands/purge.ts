@@ -40,11 +40,19 @@ module.exports.interaction = async (interaction, client) => {
 module.exports.run = async (client, message, args) => {
     if (message.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
         var number = args[0];
+        if (!number) {
+            message.channel.send("Please specify a number of messages to purge");
+            return;
+        }
+        if (!message.guild) {
+            message.channel.send("This command can only be used in a server.");
+            return;
+        }
         if (number > 100) {
             message.channel.send("You can only purge up to 100 messages at once.");
             return;
         }
-        if (number === undefined || number < 1) {
+        if (number < 1) {
             message.channel.send("You can only purge at least 1 message.");
             return;
         } 
