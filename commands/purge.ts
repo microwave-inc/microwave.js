@@ -32,6 +32,9 @@ module.exports.interaction = async (interaction, client) => {
         await interaction.channel.bulkDelete(number);
         return interaction.reply({ content: `Successfully purged ${number} messages` });
     }
+    else {
+        interaction.reply({ content: "You need `MANAGE_MESSAGES` permisions to run this command", ephemeral: true });
+    }
 }
 
 module.exports.run = async (client, message, args) => {
