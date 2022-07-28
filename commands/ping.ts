@@ -10,10 +10,11 @@ module.exports.help = {
 
 //If interaction command
 module.exports.interaction = async (interaction, client) => {
-  return interaction.reply("Pong!");
+  await interaction.reply("Pong!");
+  await interaction.followUp({ content: `🏓Latency is ${Date.now() - interaction.createdTimestamp}ms`, ephemeral: true });
 };
 
 //If normal command
 module.exports.run = async (client, message, args) => {
-  message.channel.send("Pong!");
+  await message.channel.send(`🏓Latency is ${Date.now() - message.createdTimestamp}ms`);
 };
