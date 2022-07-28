@@ -18,7 +18,7 @@ module.exports.interaction = async (interaction, client) => {
     const suggestion = interaction.options.getString("suggestion");
     const embed = new MessageEmbed()
     .setTitle("Suggestion")
-    .setDescription(suggestion)
+    .setDescription(suggestion + "\n ID (User): " + interaction.user.id + "\n Guild: " + interaction.guild.name)
     .setColor("#0099ff")
     .setTimestamp()
     .setFooter(`Suggested by ${interaction.user.username}`);
