@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders"); //Also not an er
 
 module.exports.help = {
   name: "ping",
+  cat: "Info",
   description: "The command to make sure everything is working",
   aliases: "pong",
   data: new SlashCommandBuilder().setName("ping").setDescription("Pong!"),

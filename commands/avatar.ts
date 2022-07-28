@@ -3,7 +3,7 @@ const { MessageEmbed } = require("discord.js");
 
 module.exports.help = {
     name: "avatar",
-    cat: "Discord",
+    cat: "Info",
     description: "Get the avatar of you or someone else",
     aliases: "",
     data: new SlashCommandBuilder().setName("avatar").setDescription("Get the avatar of you or someone else").addUserOption(option => {
