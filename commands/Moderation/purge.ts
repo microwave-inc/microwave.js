@@ -5,7 +5,7 @@ const wait = require('node:timers/promises').setTimeout;
 
 module.exports.help = {
     name: "purge",
-    cat: "Mod",
+    cat: "Moderation",
     description: "Purge a number of messages",
     aliases: "",
     data: new SlashCommandBuilder().setName("purge").setDescription("Purge a number of messages").addNumberOption( option => {
