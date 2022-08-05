@@ -38,7 +38,7 @@ fs.readdir("./commands/", async (err, files) => {
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity(`Techno never dies`, { type: "PLAYING" }); //Update: Am dumb but I tried - Ayden
+  client.user.setActivity(`I like men 🏳️‍🌈`, { type: "PLAYING" }); //Update: Am dumb but I tried - Ayden
 });
 
 //When slash commands are ran
