@@ -22,13 +22,17 @@ module.exports.interaction = async (interaction, client) => {
     const embed = new MessageEmbed()
     const rated = Math.floor(Math.random() * 101)
 
-    if (rated > 50) {
-        embed.setTitle(`I like ${rate}`)
+    if (rate.length < 500) {
+        if (rated > 50) {
+            embed.setTitle(`I like ${rate}`)
+        } else {
+            embed.setTitle(`I don't like ${rate}`)
+        }
+        embed.setDescription(`I'd rate ${rate} ${rated}/100`)
+        embed.setColor("#FFFFFF")
     } else {
-        embed.setTitle(`I don't like ${rate}`)
+        interaction.reply({ content: "Error: Please enter 500 characters or less", ephermal: true })
     }
-    embed.setDescription(`I'd rate ${rate} ${rated}/100`)
-    embed.setColor("#FFFFFF")
 
     interaction.reply({ embeds: [embed] })
 }
@@ -38,13 +42,17 @@ module.exports.run = async (client, message, args) => {
     const embed = new MessageEmbed()
     const rated = Math.floor(Math.random() * 101)
 
-    if (rated > 50) {
-        embed.setTitle(`I like ${rate}`)
+    if (rate.length < 500) {
+        if (rated > 50) {
+            embed.setTitle(`I like ${rate}`)
+        } else {
+            embed.setTitle(`I don't like ${rate}`)
+        }
+        embed.setDescription(`I'd rate ${rate} ${rated}/100`)
+        embed.setColor("#FFFFFF")
     } else {
-        embed.setTitle(`I don't like ${rate}`)
+        message.channel.reply("Error: Please enter 500 characters or less")
     }
-    embed.setDescription(`I'd rate ${rate} ${rated}/100`)
-    embed.setColor("#FFFFFF")
 
     message.channel.send({ embeds: [embed] })
 }
