@@ -15,7 +15,7 @@ module.exports.interaction = async (interaction, client) => {
         .setTitle("About")
         .setURL("https://microwavebot.tech/discord")
         .addFields(
-            { name: "Version", value: "1.0.0", inline: true },
+            { name: "Version", value: "3.0.0 Pre-release", inline: true },
             { name: "Discord Library", value: "Discord.js v13", inline: true },
             { name: "Node.js", value: "v16.16.0", inline: true },
             { name: "Dev Team", value: "\u200B" },
@@ -35,7 +35,7 @@ module.exports.run = async (client, message) => {
     .setTitle("About")
     .setURL("https://microwavebot.tech/discord")
     .addFields(
-        { name: "Version", value: "1.0.0", inline: true },
+        { name: "Version", value: "3.0.0 Pre-Release", inline: true },
         { name: "Discord Library", value: "Discord.js v13", inline: true },
         { name: "Node.js", value: "v16.16.0", inline: true },
         { name: "Dev Team", value: "\u200B" },

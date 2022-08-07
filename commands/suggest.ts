@@ -26,3 +26,7 @@ module.exports.interaction = async (interaction, client) => {
     client.channels.cache.get("1002019218407051325").send({ embeds: [embed] });
     interaction.reply({ content: "Your suggestion has been sent to the devs", ephemeral: true });
 }
+
+module.exports.run = async (message, client) => {
+    await message.channels.send("Hello there, as of now we are keeping this command a slash only commmand, we may allow the prefixed command soon... \n to keep up with the updates please join the support server!")
+}

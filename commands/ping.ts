@@ -11,7 +11,7 @@ module.exports.help = {
 //If interaction command
 module.exports.interaction = async (interaction, client) => {
   await interaction.reply("Pong!");
-  await interaction.followUp({ content: `🏓Latency is ${Date.now() - interaction.createdTimestamp}ms`, ephemeral: true });
+  await interaction.update({ content: `🏓Latency is ${Date.now() - interaction.createdTimestamp}ms`, ephemeral: true });
 };
 
 //If normal command
