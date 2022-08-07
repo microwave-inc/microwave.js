@@ -18,12 +18,20 @@ module.exports.interaction = async (interaction, client) => {
       .setLabel('Get Latency')
       .setStyle("PRIMARY"),
   );
+  const rowdisabled = new MessageActionRow()
+  .addComponents(
+      new MessageButton()
+          .setCustomId('latencydisabled')
+          .setLabel('Got Latency')
+          .setStyle("SUCCESS")
+          .setDisabled(true),
+  );
 
   await interaction.reply({ content: "Pong!", components: [row] });
   const filter = i => i.customId === 'latency' && i.user.id === interaction.user.id;
   const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
   collector.on('collect', async i => {
-    await i.reply({ content: `🏓Latency is ${Date.now() - interaction.createdTimestamp}ms`, ephemeral: true, components: [] });
+    await i.update({ content: `🏓Latency is ${Date.now() - interaction.createdTimestamp}ms`, components: [rowdisabled] });
   });
 };
 
