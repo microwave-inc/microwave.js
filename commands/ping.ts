@@ -1,3 +1,4 @@
+const { MessageActionRow, MessageButton } = require('discord.js');
 const { SlashCommandBuilder } = require("@discordjs/builders"); //Also not an error - Ayden
 
 module.exports.help = {
@@ -10,8 +11,20 @@ module.exports.help = {
 
 //If interaction command
 module.exports.interaction = async (interaction, client) => {
-  await interaction.reply("Pong!");
-  await interaction.update({ content: `🏓Latency is ${Date.now() - interaction.createdTimestamp}ms`, ephemeral: true });
+  const row = new MessageActionRow()
+  .addComponents(
+    new MessageButton()
+      .setCustomId('latency')
+      .setLabel('Get Latency')
+      .setStyle("PRIMARY"),
+  );
+
+  await interaction.reply({ content: "Pong!", components: [row] });
+  const filter = i => i.customId === 'latency' && i.user.id === interaction.user.id;
+  const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
+  collector.on('collect', async i => {
+    await i.reply({ content: `🏓Latency is ${Date.now() - interaction.createdTimestamp}ms`, ephemeral: true, components: [] });
+  });
 };
 
 //If normal command

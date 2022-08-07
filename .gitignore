@@ -5,3 +5,4 @@ thing*
 node_modules
 .vscode
 .vs
+*test*
