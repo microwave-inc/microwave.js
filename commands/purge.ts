@@ -51,8 +51,8 @@ module.exports.run = async (client, message, args) => {
             message.channel.send("This command can only be used in a server.");
             return;
         }
-        if (number > 100) {
-            message.channel.send("You can only purge up to 100 messages at once.");
+        if (number > 50) {
+            message.channel.send("Due to an odd bug you can only purge under 50 messages at once.");
             return;
         }
         if (number < 1) {
