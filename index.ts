@@ -38,10 +38,10 @@ fs.readdir("./commands/", async (err, files) => {
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity(`${config.activity[Math.round(Math.random()*(config.activity.length-1))]} | d.help`);
+  client.user.setActivity(`${config.activity[Math.round(Math.random()*(config.activity.length-1))]} | m!help`);
 
   setInterval(function() {
-      client.user.setActivity(`${config.activity[Math.floor(Math.random()*(config.activity.length-1))]} | d.help`);
+      client.user.setActivity(`${config.activity[Math.floor(Math.random()*(config.activity.length-1))]} | m!help`);
   }, 30000)
   
 }); //30 seconds also IT WORKS AHA!
