@@ -19,7 +19,7 @@ module.exports.interaction = async (interaction, client) => {
 
 //If normal command
 module.exports.run = async (client, message, args) => {
-    if (message.member.permissions.has(Permissions.FLAGS.KICK_MEMBERS) || message.member.permisions.has(Permissions.FLAGS.BAN_MEMBERS)) {
+    /*if (message.member.permissions.has(Permissions.FLAGS.KICK_MEMBERS) || message.member.permisions.has(Permissions.FLAGS.BAN_MEMBERS)) {
         var userID;
 
         if (args[0] !== "createrole") {
@@ -59,5 +59,7 @@ module.exports.run = async (client, message, args) => {
         }
     } else {
         message.channel.send("You cannot run this command!")
-    }
+    }*/
+
+    await message.channel.send("Uh oh, this has been disabled due to an an issue with the bot owner's 2FA setting.");
 };

@@ -30,7 +30,7 @@ module.exports.interaction = async (interaction, client) => {
                 return interaction.reply({ content: "You can't kick yourself.", ephemeral: true });
             }
             await interaction.guild.members.kick(user.id)
-            return interaction.reply({ content: `Successfully kicked ${user.tag}` });
+            return interaction.reply({ content: `Successfully kicked ${user.tag}` }).catch(err => {console.log(err)});
         }
     else {
         interaction.reply({ content: "You need `KICK_MEMBERS` permisions to run this command", ephemeral: true });
@@ -58,7 +58,7 @@ module.exports.run = async (client, message, args) => {
             return;
         }
 
-        message.guild.members.kick(userID)
+        message.guild.members.kick(userID).catch(err => {console.log(err)})
             .then(j => {
                 message.channel.send(`:white_check_mark: User was kicked from ${message.guild.name}`);
             });
