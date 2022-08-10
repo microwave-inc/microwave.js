@@ -26,7 +26,7 @@ module.exports.interaction = async (interaction, client) => {
             if (!user) {
                 return interaction.reply({ content: "Please mention a user to unban.", ephemeral: true });
             }
-            await interaction.guild.members.unban(user.id).catch(err => {console.log(err)});
+            await interaction.guild.members.unban(user.id).catch(err => {console.log(err); return})
             return interaction.reply({ content: `Successfully unbanned ${user.tag}` });
         }
     else {
@@ -55,7 +55,7 @@ module.exports.run = async (client, message, args) => {
             return;
         }
 
-        message.guild.members.unban(userID).catch(err => {console.log(err)})
+        message.guild.members.unban(userID).catch(err => {console.log(err); return})
             .then(j => {
                 message.channel.send(`:white_check_mark: User was unbanned from ${message.guild.name}`);
             });

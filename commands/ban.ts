@@ -29,7 +29,7 @@ module.exports.interaction = async (interaction, client) => {
             if (user === interaction.member) {
                 return interaction.reply({ content: "You can't ban yourself.", ephemeral: true });
             }
-            await interaction.guild.members.ban(user.id).catch(err => {console.log(err)})
+            await interaction.guild.members.ban(user.id).catch(err => {console.log(err); return})
             return interaction.reply({ content: `Successfully banned ${user.tag}` });
         }
     else {
@@ -58,7 +58,7 @@ module.exports.run = async (client, message, args) => {
             return;
         }
 
-        message.guild.members.ban(userID).catch(err => {console.log(err)})
+        message.guild.members.ban(userID).catch(err => {console.log(err); return})
             .then(j => {
                 message.channel.send(`:white_check_mark: User was banned from ${message.guild.name}`);
             });

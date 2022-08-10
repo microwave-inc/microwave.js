@@ -30,7 +30,7 @@ module.exports.interaction = async (interaction, client) => {
         if (number < 1) {
             return interaction.reply({ content: "You can only purge at least 1 message.", ephemeral: true });
         }
-        await interaction.channel.bulkDelete(number).catch(err => {console.log(err)});
+        await interaction.channel.bulkDelete(number).catch(err => {console.log(err); return})
         await interaction.reply({ content: `Successfully purged ${number} messages` });
         await wait(5000);
         await interaction.deleteReply();
@@ -59,7 +59,7 @@ module.exports.run = async (client, message, args) => {
             message.channel.send("You can only purge at least 1 message.");
             return;
         } 
-        await message.channel.bulkDelete(number + 1).catch(err => {console.log(err)});
+        await message.channel.bulkDelete(number + 1).catch(err => {console.log(err); return})
         await message.channel.send(`Successfully purged ${number} messages`).then(msg => {
             wait(5000); msg.delete();
         })
