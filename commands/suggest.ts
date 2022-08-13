@@ -19,7 +19,7 @@ module.exports.interaction = async (interaction, client) => {
     const embed = new MessageEmbed()
     .setTitle("Suggestion")
     .setThumbnail(interaction.user.displayAvatarURL({ format: "jpg"}))
-    .setDescription(suggestion + "\n ID (User): " + interaction.user.id + "\n Guild: " + interaction.guild.name)
+    .setDescription(suggestion + "\n ID (User): " + interaction.user.id + "\n Username: " + interaction.user.name)
     .setColor("#0099ff")
     .setTimestamp()
     .setFooter(`Suggested by ${interaction.user.username}`);
