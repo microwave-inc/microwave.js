@@ -1,7 +1,7 @@
 *env*
 *.db
 config*
-thing*
+unused*
 node_modules
 .vscode
 .vs
