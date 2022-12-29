@@ -19,7 +19,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
     fs.readdir("commands/", async (err, files) => { 
       if (err) throw err; 
    
-      var fileName = files.filter((files) => files.split(".").pop() === "ts"); 
+      var fileName = files.filter((files) => files.split(".").pop() === "js"); 
    
         //Adding commands to the help command  
       await fileName.forEach((fileName) => { 
@@ -60,7 +60,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
    fs.readdir("commands/", async (err, files) => { 
      if (err) throw err; 
   
-     var fileName = files.filter((files) => files.split(".").pop() === "ts"); 
+     var fileName = files.filter((files) => files.split(".").pop() === "js"); 
   
        //Adding commands to the help command  
      await fileName.forEach((fileName) => { 
