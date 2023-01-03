@@ -20,7 +20,7 @@ module.exports.interaction = async (interaction, client) => {
     .setTitle("Suggestion")
     .setAuthor({ name: `${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL({ format: "jpg"})})
     //.setThumbnail(interaction.user.displayAvatarURL({ format: "jpg"})) // Was changed out for .setAuthor
-    .setDescription(suggestion + "\n ID (User): " + interaction.user.id + "\n Username: " + interaction.user.username)
+    .setDescription(suggestion + "\n ID (User): " + interaction.user.id)
     .setColor("#0099ff")
     .setTimestamp()
     //.setfooter({ text: `Suggested by ${interaction.user.username}` });
