@@ -18,7 +18,7 @@ module.exports.interaction = async (interaction, client) => {
     const suggestion = interaction.options.getString("suggestion");
     const embed = new MessageEmbed()
     .setTitle("Suggestion")
-    .setAuthor({ name: `${interaction.user.username}` iconURL: interaction.user.displayAvatarURL({ format: "jpg"})})
+    .setAuthor({ name: `${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL({ format: "jpg"})})
     //.setThumbnail(interaction.user.displayAvatarURL({ format: "jpg"})) // Was changed out for .setAuthor
     .setDescription(suggestion + "\n ID (User): " + interaction.user.id + "\n Username: " + interaction.user.username)
     .setColor("#0099ff")
