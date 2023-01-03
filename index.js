@@ -42,9 +42,9 @@ client.on("ready", () => {
 
   setInterval(function() {
       client.user.setActivity(`${config.activity[Math.floor(Math.random()*(config.activity.length-1))]} | m!help`);
-  }, 30000)
+  }, 60000) // Changed to 60 seconds due to the bot possibly being rate-limited
   
-}); //30 seconds also IT WORKS AHA!
+});
 
 //When slash commands are ran
 client.on("interactionCreate", async (interaction) => {
