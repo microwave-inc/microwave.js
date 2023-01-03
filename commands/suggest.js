@@ -23,7 +23,7 @@ module.exports.interaction = async (interaction, client) => {
     .setDescription(suggestion + "\n ID (User): " + interaction.user.id + "\n Username: " + interaction.user.username)
     .setColor("#0099ff")
     .setTimestamp()
-    .setfooter({ text: `Suggested by ${interaction.user.username}` });
+    //.setfooter({ text: `Suggested by ${interaction.user.username}` });
     client.channels.cache.get("1002019218407051325").send({ embeds: [embed] });
     interaction.reply({ content: "Your suggestion has been sent to the devs", ephemeral: true });
 }
