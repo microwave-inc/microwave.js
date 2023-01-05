@@ -41,47 +41,11 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
         } 
       }); 
    
-      interaction.reply({ embeds: [aEmbed] }); //might make this ephemeral -Ayden
+      interaction.reply({ embeds: [aEmbed], ephermeral: True }); //might make this ephemeral -Ayden
     }); 
   
  };
 //If normal command 
- module.exports.run = async ( 
-   client, 
-   message, 
-   args, 
-   onlineSelector, 
-   idLogger, 
-   pollManager 
- ) => { 
-   var aEmbed = new MessageEmbed().setTitle("All commands"); 
-   let config = require("../config.json");
-  
-   fs.readdir("commands/", async (err, files) => { 
-     if (err) throw err; 
-  
-     var fileName = files.filter((files) => files.split(".").pop() === "js"); 
-  
-       //Adding commands to the help command  
-     await fileName.forEach((fileName) => { 
-       let properties = require(`../commands/${fileName}`); 
-  
-       if (properties.help.args) { 
-         let formatedArgs = properties.help.args.split(",").join(" "); 
-         aEmbed.addFields({ 
-           name: `${config.prefix}${properties.help.name} \`${formatedArgs}\``, 
-           value: `${properties.help.description}`, 
-         }); 
-       } else { 
-         let properties = require(`../commands/${fileName}`); 
-  
-         aEmbed.addFields({ 
-           name: `${config.prefix}${properties.help.name}`, 
-           value: `${properties.help.description}`, 
-         }); 
-       } 
-     }); 
-  
-     message.channel.send({ embeds: [aEmbed] }); 
-   }); 
- };
+ module.exports.run = async (client, message) => {
+  await message.channels.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!")
+ }

@@ -38,21 +38,5 @@ module.exports.interaction = async (interaction, client) => {
 }
 
 module.exports.run = async (client, message, args) => {
-    const rate = args.join(" ")
-    const embed = new MessageEmbed()
-    const rated = Math.floor(Math.random() * 101)
-
-    if (rate.length < 500) {
-        if (rated > 50) {
-            embed.setTitle(`I like ${rate}`)
-        } else {
-            embed.setTitle(`I don't like ${rate}`)
-        }
-        embed.setDescription(`I'd rate ${rate} ${rated}/100`)
-        embed.setColor("#FFFFFF")
-    } else {
-        message.channel.reply("Error: Please enter 500 characters or less")
-    }
-
-    message.channel.send({ embeds: [embed] })
+    await message.channels.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!")
 }

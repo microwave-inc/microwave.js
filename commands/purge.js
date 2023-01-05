@@ -41,29 +41,5 @@ module.exports.interaction = async (interaction, client) => {
 }
 
 module.exports.run = async (client, message, args) => {
-    if (message.member.permissions.has(Permissions.FLAGS.MANAGE_MESSAGES)) {
-        var number = args[0];
-        if (!number) {
-            message.channel.send("Please specify a number of messages to purge");
-            return;
-        }
-        if (!message.guild) {
-            message.channel.send("This command can only be used in a server.");
-            return;
-        }
-        if (number > 50) {
-            message.channel.send("Due to an odd bug you can only purge under 50 messages at once.");
-            return;
-        }
-        if (number < 1) {
-            message.channel.send("You can only purge at least 1 message.");
-            return;
-        } 
-        await message.channel.bulkDelete(number + 1).catch(err => {console.log(err); return})
-        await message.channel.send(`Successfully purged ${number} messages`).then(msg => {
-            wait(5000); msg.delete();
-        })
-    } else {
-        message.channel.send("You need `MANAGE_MESSAGES` permisions to run this command")
-    }
+    await message.channels.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!")
 }

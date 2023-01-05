@@ -22,13 +22,5 @@ module.exports.interaction = async (interaction, client) => {
 }
 
 module.exports.run = async (client, message, args) => {
-    const embed = new MessageEmbed()
-        .setColor("#FFFFFE")
-        .setTitle("Coinflip")
-        .setURL("https://microwavebot.tech/discord")
-        .setTitle("**Coinflip:**")
-        .setColor("#9603fd")
-        .addField("Result", `${Math.floor(Math.random() * 2) == 0 ? "Heads" : "Tails"}`, true)
-        .setTimestamp()
-    message.channel.send({ embeds: [embed] });
+    await message.channels.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!")
 }
