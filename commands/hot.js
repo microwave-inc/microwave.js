@@ -16,16 +16,20 @@ module.exports.interaction = async (interaction, client) => {
 
     const hotness = Math.floor(Math.random() * 100) + 1;
 
-    async function getEmoji() {
-    if (hotness > 25) {
-        let emoji = "❤"
-    } else if (hotness > 50) {
-        let emoji = "💖"
-    } else if (hotness > 75) {
-        let emoji = "💞"
-    } else if (hotness < 25) {
-        let emoji = "💔"
-    }};
+    function getEmoji() {
+        if (hotness > 25) {
+            let emoji = "❤"
+            return emoji;
+        } else if (hotness > 50) {
+            let emoji = "💖"
+            return emoji;
+        } else if (hotness > 75) {
+            let emoji = "💞"
+            return emoji;
+        } else if (hotness < 25) {
+            let emoji = "💔"
+        return emoji;}
+    };
     
     interaction.reply({ content: `You are ${hotness}% hot ` + getEmoji() });
 }
