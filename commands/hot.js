@@ -29,7 +29,7 @@ module.exports.interaction = async (interaction, client) => {
     }
     };
     
-    if (user.id == interaction.member.id) { // Checks if the user is the author
+    if (user == interaction.member) { // Checks if the user is the author
         interaction.reply({ content: `you are ${hotness}% hot ` + getEmoji() });
     } else {
         interaction.reply({ content: user.username + ` is ${hotness}% hot ` + getEmoji() }); // And yes I am lazy
