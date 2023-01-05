@@ -1,0 +1,27 @@
+# TODO
+
+- [ ] Overhaul help command
+   - [ ] Make it use pages instead of a single message
+   - [ ] Use action rows for catagory selection
+- [ ] Move commands to sorted folders
+   - [ ] Change command loader to load from folders
+- [ ] Make command handlers
+   - [ ] Load commands from folders (because yes)
+   - [ ] Hander for logging interactions and errors (for debugging)
+   - [ ] Handler for blacklist system
+   - [ ] Handler for XP system
+- [ ] Blacklist system (blacklist users from using the bot)
+   - [ ] Add command to add/remove users from blacklist
+   - [ ] Add command to view blacklist
+   - [ ] Add file to log blacklisted users
+- [ ] Add xp system
+   - [ ] Command for viewing xp
+   - [ ] Command for viewing Global leaderboard (Since per server xp would take a lot of space and resources we don't have)
+- [ ] Owner stuff
+   - [ ] Command to reload the bot
+   - [ ] Command to view logs(?)
+   - [ ] Command to eval stuff
+      - [ ] Blacklist system (blacklist users from using the bot)
+         - [ ] Add command to add/remove users from blacklist
+         - [ ] Add command to view blacklist
+         - [ ] Add file to log blacklisted users
