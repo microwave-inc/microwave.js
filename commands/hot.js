@@ -15,8 +15,8 @@ module.exports.interaction = async (interaction, client) => {
     }
 
     const hotness = Math.floor(Math.random() * 100) + 1;
-    var emoji
 
+    async function getEmoji() {
     if (hotness > 25) {
         let emoji = "❤"
     } else if (hotness > 50) {
@@ -25,10 +25,10 @@ module.exports.interaction = async (interaction, client) => {
         let emoji = "💞"
     } else if (hotness < 25) {
         let emoji = "💔"
-    .then(() => 
-        {interaction.reply({ content: `You are ${hotness}% hot ` + emoji });
-    })
-}}
+    }};
+    
+    interaction.reply({ content: `You are ${hotness}% hot ` + getEmoji() });
+}
 
 module.exports.run = async (client, message, args) => {
     await message.channels.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!")
