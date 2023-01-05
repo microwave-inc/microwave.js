@@ -17,7 +17,7 @@ ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
 
 We (the [developers](https://microwavebot.tech/team)) reserve the right to make changes to the bot that include: logging commands and the arguments given and your ID for debgging reasons, logging the servers the bot is in, logging user ID's for blacklisting.
 
-If any logs are made they will not be shared outside of the MIcrowave Inc. team for your privacy
+If any logs are made they will not be shared outside of the Microwave Inc. team for your privacy
 
 By inviting the bot to your server you agree to both the Terms of Use and the Privacy Policy
 
