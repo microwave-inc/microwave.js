@@ -10,9 +10,6 @@ module.exports.help = {
 
 module.exports.interaction = async (interaction, client) => {
     const user = interaction.options.getUser("user");
-    if (!user) {
-        return interaction.reply({ content: "Please mention a user to calculate hotness for.", ephemeral: true });
-    }
 
     const hotness = Math.floor(Math.random() * 100) + 1;
 
@@ -31,7 +28,7 @@ module.exports.interaction = async (interaction, client) => {
         return emoji;}
     };
     
-    interaction.reply({ content: `You are ${hotness}% hot ` + getEmoji() });
+    interaction.reply({ content: user.username + ` are ${hotness}% hot ` + getEmoji() });
 }
 
 module.exports.run = async (client, message, args) => {
