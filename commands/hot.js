@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
-// Note: This is one of the many commands to be ported over from the old python bot
+// Note: This is an old command from the python bot, I just converted it to a slash command and to JS
 module.exports.help = {
     name: "hot",
     cat: "Fun",
@@ -13,7 +13,7 @@ module.exports.interaction = async (interaction, client) => {
 
     const hotness = Math.floor(Math.random() * 100) + 1;
 
-    function getEmoji() {
+    function getEmoji() { // Yes I had to make this a function
         if (hotness > 25) {
             let emoji = "❤"
             return emoji;
@@ -28,9 +28,12 @@ module.exports.interaction = async (interaction, client) => {
         return emoji;}
     };
     
-    interaction.reply({ content: user.username + ` are ${hotness}% hot ` + getEmoji() });
+    interaction.reply({ content: user.username + ` is ${hotness}% hot ` + getEmoji() }); // And yes I am lazy
 }
 
 module.exports.run = async (client, message, args) => {
     await message.channels.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!")
 };
+
+
+// Done by Ayden
