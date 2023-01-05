@@ -16,19 +16,24 @@ module.exports.interaction = async (interaction, client) => {
     function getEmoji() { // Yes I had to make this a function
         if (hotness > 25) {
             let emoji = "❤"
-            return emoji;
+        return emoji;
         } else if (hotness > 50) {
             let emoji = "💖"
-            return emoji;
+        return emoji;
         } else if (hotness > 75) {
             let emoji = "💞"
-            return emoji;
+        return emoji;
         } else if (hotness < 25) {
             let emoji = "💔"
-        return emoji;}
+        return emoji;
+    }
     };
     
-    interaction.reply({ content: user.username + ` is ${hotness}% hot ` + getEmoji() }); // And yes I am lazy
+    if (user.id == interaction.member.id) { // Checks if the user is the author
+        interaction.reply({ content: `you are ${hotness}% hot ` + getEmoji() });
+    } else {
+        interaction.reply({ content: user.username + ` is ${hotness}% hot ` + getEmoji() }); // And yes I am lazy
+    };
 }
 
 module.exports.run = async (client, message, args) => {
