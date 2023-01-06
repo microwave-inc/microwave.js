@@ -33,6 +33,10 @@ fs.readdir("./commands/", async (err, files) => {
     console.log(`${fileName} command loaded`);
   });
 
+  await fileName.forEach((fileName) => {
+    let properties = require (`./handlers/${fileName}`);
+  })
+
   console.log("Successfully loaded commands to memory");
 });
 

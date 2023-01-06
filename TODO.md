@@ -4,10 +4,10 @@
    - [ ] Make it use pages instead of a single message
    - [ ] Use action rows for catagory selection
 - [ ] Move commands to sorted folders
-   - [ ] Change command loader to load from folders 
+   - [X] Change command loader to load from folders (refer to task two of "Make command handlers")
 - [ ] Make command handlers
-   - [ ] Load commands from folders (because yes)
-   - [ ] Hander for logging interactions and errors (for debugging)
+   - [X] Load commands from folders (because yes) note: done, but not tested so not used
+   - [X] Hander for logging interactions and errors (for debugging) Note: Errors are not logged yet
    - [ ] Handler for blacklist system
    - [ ] Handler for XP system
    - [ ] Handler for Economy system
