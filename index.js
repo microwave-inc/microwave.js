@@ -16,7 +16,7 @@ client.aliases = new Collection.Collection();
 //Command Folder location
 client.categories = fs.readdirSync('./handlers/');
 
-["command"].forEach(handler => {
+["handlers"].forEach(handler => {
     const command = require(`./handlers/${handler}`);
     command.load(client)
 }); // This all should work
