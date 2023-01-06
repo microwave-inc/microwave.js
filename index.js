@@ -18,8 +18,7 @@ client.handler = fs.readdirSync('./handlers/');
 
 handlerfolder = client.handler;
 handlerfolder.forEach(handler => {
-    const command = require(`./handlers/${handler}`);
-    require(command)
+    require(`./handlers/${handler}`);
 }); // This all should work
 
 client.on("ready", () => {
