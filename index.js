@@ -1,5 +1,5 @@
-const { Client, Intents } = require("discord.js");
-const Collection = require("@discordjs/collection");
+const { Client, Collection, Intents } = require("discord.js");
+// const Collection = require("@discordjs/collection");
 const fs = require("fs");
 
 const config = require("./config.json");
