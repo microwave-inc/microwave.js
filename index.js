@@ -9,36 +9,17 @@ const client = new Client({
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
 });
 
-client.commands = new Collection.Collection();
-client.aliases = new Collection.Collection();
+//Command Handler
+client.commands = new Collection();
+client.aliases = new Collection();
 
-//Load commands into memory
-fs.readdir("./commands/", async (err, files) => {
-  if (err) throw err;
+//Command Folder location
+client.categories = fs.readdirSync('./commands/');
 
-  console.log("Started loading commands into memory");
-
-  var fileName = files.filter((files) => files.split(".").pop() === "ts" || "js");
-
-  //Add commands to the collection
-  await fileName.forEach((fileName) => {
-    let properties = require(`./commands/${fileName}`);
-
-    let commandName = properties.help.name.toLowerCase();
-    let aliasesName = properties.help.aliases.toLowerCase();
-
-    client.commands.set(commandName, properties);
-    client.aliases.set(aliasesName, properties);
-
-    console.log(`${fileName} command loaded`);
-  });
-
-  await fileName.forEach((fileName) => {
-    let properties = require (`./handlers/${fileName}`);
-  })
-
-  console.log("Successfully loaded commands to memory");
-});
+["command"].forEach(handler => {
+    const command = require(`./handlers/${handler}`);
+    command.load(client)
+}); // This all should work
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
