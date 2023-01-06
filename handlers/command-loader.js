@@ -29,6 +29,14 @@ function loadCommands(client) {
   }
 }
 
+client.on("interactionCreate", async (interaction) => {
+  if (!interaction.isCommand()) return;
+
+  let commandFile = client.commands.get(interaction.commandName);
+
+  if (commandFile) commandFile.interaction(interaction, client);
+});
+
 module.exports = {
   loadCommands,
 }; // This is all stolen from https://github.com/Simpleboy353/REAPER-2.0/blob/master/handler/loadCommands.js I couldn't figure it out

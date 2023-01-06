@@ -32,13 +32,6 @@ client.on("ready", () => {
 });
 
 //When slash commands are ran
-client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isCommand()) return;
-
-  let commandFile = client.commands.get(interaction.commandName);
-
-  if (commandFile) commandFile.interaction(interaction, client);
-});
 
 //When a message is sent
 client.on("messageCreate", async (message) => {
