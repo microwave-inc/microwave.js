@@ -1,5 +1,5 @@
-const { Client, Collection, Intents } = require("discord.js");
-// const Collection = require("@discordjs/collection");
+const { Client, Intents } = require("discord.js");
+const Collection = require("@discordjs/collection");
 const fs = require("fs");
 
 const config = require("./config.json");
@@ -10,11 +10,11 @@ const client = new Client({
 });
 
 //Command Handler
-client.commands = new Collection();
-client.aliases = new Collection();
+client.commands = new Collection.Collection();
+client.aliases = new Collection.Collection();
 
 //Command Folder location
-client.categories = fs.readdirSync('./handlers/');
+client.categories = fs.readdirSync('./commands/');
 
 ["command"].forEach(handler => {
     const command = require(`./handlers/${handler}`);
