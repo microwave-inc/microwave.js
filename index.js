@@ -9,17 +9,32 @@ const client = new Client({
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
 });
 
-//Command Handler
 client.commands = new Collection.Collection();
 client.aliases = new Collection.Collection();
 
-//Command Folder location
-client.handler = fs.readdirSync('./handlers/');
+//Load commands into memory
+fs.readdir("./commands/", async (err, files) => {
+  if (err) throw err;
 
-handlerfolder = client.handler;
-handlerfolder.forEach(handler => {
-    require(`./handlers/${handler}`);
-}); // This all should work
+  console.log("Started loading commands into memory");
+
+  var fileName = files.filter((files) => files.split(".").pop() === "ts" || "js");
+
+  //Add commands to the collection
+  await fileName.forEach((fileName) => {
+    let properties = require(`./commands/${fileName}`);
+
+    let commandName = properties.help.name.toLowerCase();
+    let aliasesName = properties.help.aliases.toLowerCase();
+
+    client.commands.set(commandName, properties);
+    client.aliases.set(aliasesName, properties);
+
+    console.log(`${fileName} command loaded`);
+  });
+
+  console.log("Successfully loaded commands to memory");
+});
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -32,6 +47,13 @@ client.on("ready", () => {
 });
 
 //When slash commands are ran
+client.on("interactionCreate", async (interaction) => {
+  if (!interaction.isCommand()) return;
+
+  let commandFile = client.commands.get(interaction.commandName);
+
+  if (commandFile) commandFile.interaction(interaction, client);
+});
 
 //When a message is sent
 client.on("messageCreate", async (message) => {
