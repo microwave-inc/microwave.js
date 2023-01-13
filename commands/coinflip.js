@@ -16,7 +16,7 @@ module.exports.interaction = async (interaction, client) => {
         .setURL("https://microwavebot.tech/discord")
         .setTitle("**Coinflip:**")
         .setColor("#9603fd")
-        .addField("Result", `${Math.floor(Math.random() * 2) == 0 ? "Heads" : "Tails"}`, true)
+        .addFields({ name: "Result", value: `${Math.floor(Math.random() * 2) == 0 ? "Heads" : "Tails"}` })
         .setTimestamp()
     interaction.reply({ embeds: [embed] });
 }
