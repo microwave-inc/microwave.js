@@ -7,7 +7,7 @@
    - [X] Change command loader to load from folders (refer to task two of "Make command handlers")
 - [ ] Make command handlers
    - [X] Load commands from folders (because yes) note: done, but not tested so not used
-   - [X] Hander for logging interactions and errors (for debugging) Note: Errors are not logged yet
+   - [ ] Hander for logging interactions and errors (for debugging)
    - [ ] Handler for blacklist system
    - [ ] Handler for XP system
    - [ ] Handler for Economy system
@@ -20,7 +20,7 @@
    - [ ] Leaderboard (global) and show top 9, and your posistion
 - [ ] Owner stuff
    - [ ] Command to reload the bot
-   - [ ] Command to view logs(?)
+   - [ ] Command to view logs(?) Note: might just pull from the website or something
    - [ ] Command to eval stuff
    - [ ] System to check if user attempting to access these commands is within the devs ID's
       - [ ] Blacklist system (blacklist users from using the bot)

@@ -53,6 +53,9 @@ client.on("interactionCreate", async (interaction) => {
   let commandFile = client.commands.get(interaction.commandName);
 
   if (commandFile) commandFile.interaction(interaction, client);
+
+  // Now do the logging
+  console.log(`Logger | ` + interaction.user.username + ` ran the command ` + commandFile + ` in ` + interaction.guild.name `with options` + interaction.options.data) // Very primitive for now, but should work
 });
 
 //When a message is sent

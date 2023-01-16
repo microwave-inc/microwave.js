@@ -14,7 +14,7 @@ const { SlashCommandBuilder } = require("@discordjs/builders");
 //thank you ally for the help command base, did a bit of fixing tho -Ayden
  //If interaction command 
  module.exports.interaction = async (interaction, client, onlineSelector, idLogger, pollManager) => { 
-    var aEmbed = new MessageEmbed().setTitle("All commands");
+    var aEmbed = new MessageEmbed().setTitle("All commands").setColor("FFFFFF"); // Discord needs to allow us to use pure white whithin discord.js fr
    
     fs.readdir("commands/", async (err, files) => { 
       if (err) throw err; 

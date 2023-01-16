@@ -25,7 +25,7 @@ module.exports.interaction = async (interaction, client) => {
         return emoji;
         } else if (hotness < 25) {
             let emoji = "💔"
-        return emoji;
+        return emoji; // God I am just now remembering how long it took me to make this function
     }
     };
     
