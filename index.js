@@ -1,76 +1,96 @@
-const { Client, Intents } = require("discord.js");
-const Collection = require("@discordjs/collection");
+const { Client, Intents, Collection } = require("discord.js");
 const fs = require("fs");
 
 const config = require("./config.json");
 
 const client = new Client({
-  intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_PRESENCES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
+  intents: [
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_MEMBERS,
+    Intents.FLAGS.GUILD_PRESENCES,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+  ],
   partials: ["MESSAGE", "CHANNEL", "REACTION"],
 });
 
-client.commands = new Collection.Collection();
-client.aliases = new Collection.Collection();
+client.commands = new Collection();
 
-//Load commands into memory
-fs.readdir("./commands/", async (err, files) => {
-  if (err) throw err;
+const commandFolders = fs.readdirSync('./commands');
+const handlerFiles = fs.readdirSync('./handlers').filter(file => file.endsWith('.js'));
 
-  console.log("Started loading commands into memory");
+for (const folder of commandFolders) {
+  const commandFiles = fs.readdirSync(`./commands/${folder}`).filter(file => file.endsWith('.js'));
+  for (const file of commandFiles) {
+    const command = require(`./commands/${folder}/${file}`);
+    const commandName = command.help.name.toLowerCase();
+    console.log(`Loaded command ${commandName}`);
 
-  var fileName = files.filter((files) => files.split(".").pop() === "ts" || "js");
+    client.commands.set(commandName, command);
+    };
+  };
 
-  //Add commands to the collection
-  await fileName.forEach((fileName) => {
-    let properties = require(`./commands/${fileName}`);
+console.log("Successfully loaded commands to memory");
 
-    let commandName = properties.help.name.toLowerCase();
-    let aliasesName = properties.help.aliases.toLowerCase();
+/* // Commented out for now
+const handlers = new Collection();
+for (const file of handlerFiles) {
+  const handler = require(`./handlers/${file}`);
+  handlers.set(handler.name, handler);
+  console.log(`Loaded handler ${handler.name}`);
+}
+*/
 
-    client.commands.set(commandName, properties);
-    client.aliases.set(aliasesName, properties);
-
-    console.log(`${fileName} command loaded`);
-  });
-
-  console.log("Successfully loaded commands to memory");
-});
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
-  client.user.setActivity(`${config.activity[Math.round(Math.random()*(config.activity.length-1))]} | m!help`);
+  client.user.setActivity(
+    `${config.activity[Math.round(Math.random() * (config.activity.length - 1))]} | m!help`
+  );
 
-  setInterval(function() {
-      client.user.setActivity(`${config.activity[Math.floor(Math.random()*(config.activity.length-1))]} | m!help`);
-  }, 60000) // Changed to 60 seconds due to the bot possibly being rate-limited
-  
+  setInterval(function () {
+    client.user.setActivity(
+      `${config.activity[Math.floor(Math.random() * (config.activity.length - 1))]} | m!help`
+    );
+  }, 60000); // Changed to 60 seconds due to the bot possibly being rate-limited
 });
 
-//When slash commands are ran
+// When slash commands are ran
 client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
-  let commandFile = client.commands.get(interaction.commandName);
+  const command = client.commands.get(interaction.commandName);
 
-  if (commandFile) commandFile.interaction(interaction, client);
+  if (!command) return;
 
-  // Now do the logging
-  // (Shit no work) console.log(`Logger | ` + interaction.user.username + ` ran the command ` + commandFile + ` in ` + interaction.guild.name `with options` + interaction.options.data) // Very primitive for now, but should work
+  try {
+    await command.interaction(interaction, client);
+  } catch (error) {
+    console.error(error);
+    await interaction.reply({
+      content: "There was an error while executing this command!",
+      ephemeral: true,
+    });
+  }
 });
 
-//When a message is sent
+// When a message is sent
 client.on("messageCreate", async (message) => {
-  if (message.author.bot) return;
+  if (message.author.bot || !message.content.startsWith(config.prefix)) return;
 
-  if (!message.content.startsWith(config.prefix)) return;
-  let args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  let cmd = args.shift().toLowerCase();
+  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
+  const commandName = args.shift().toLowerCase();
 
-  let commandFile = client.commands.get(cmd);
-  let commandAlias = client.aliases.get(cmd);
+  const command = client.commands.get(commandName) || client.aliases.get(commandName);
 
-  if (commandAlias) commandAlias.run(client, message, args);
-  if (commandFile) commandFile.run(client, message, args);
+  if (!command) return;
+
+  try {
+    await command.run(client, message, args);
+  } catch (error) {
+    console.error(error);
+    await message.reply("There was an error while executing this command!");
+  }
 });
 
 client.login(config.token);

@@ -11,16 +11,23 @@ module.exports.help = {
         .setName("suggestion")
         .setDescription("The suggestion")
         .setRequired(true);
-    }),
+    }).addStringOption( option => {
+        return option
+        .setName("type")
+        .setDescription("The type of suggestion")
+        .setRequired(true)
+        .addChoices({name: "Bot", value: "Bot"}, {name: "Website", value: "Website"}, {name: "Other", value: "Other"})
+    })
 };
 
 module.exports.interaction = async (interaction, client) => {
     const suggestion = interaction.options.getString("suggestion");
+    const type = interaction.options.getString("type");
     const embed = new MessageEmbed()
     .setTitle("Suggestion")
     .setAuthor({ name: `${interaction.user.username}`, iconURL: interaction.user.displayAvatarURL({ format: "jpg"})})
     //.setThumbnail(interaction.user.displayAvatarURL({ format: "jpg"})) // Was changed out for .setAuthor
-    .setDescription(suggestion + "\n ID (User): " + interaction.user.id)
+    .setDescription(suggestion + "\nFor: " + type +"\n ID (User): " + interaction.user.id)
     .setColor("#0099ff")
     .setTimestamp()
     //.setfooter({ text: `Suggested by ${interaction.user.username}` });

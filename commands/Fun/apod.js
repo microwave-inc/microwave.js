@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed, version} = require("discord.js");
-const config = require("../config.json");
+const config = require("../../config.json");
 const fetch = require("node-fetch");
 
 module.exports.help = {
@@ -10,15 +10,15 @@ module.exports.help = {
     aliases: "",
     data: new SlashCommandBuilder().setName("apod").setDescription("Get the Astronomy Picture of the Day").addIntegerOption(option => {
         return option
-            .setName("Year")
+            .setName("year")
             .setDescription("The year to get the APOD from")
         }).addIntegerOption(option => {
             return option
-                .setName("Month")
+                .setName("month")
                 .setDescription("The month to get the APOD from")
         }).addIntegerOption(option => {
             return option
-                .setName("Day")
+                .setName("day")
                 .setDescription("The day to get the APOD from")
         })
         };

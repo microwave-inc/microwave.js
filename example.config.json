@@ -1,0 +1,9 @@
+{
+    "token": "TOKEN HERE",
+    "prefix": "m!",
+    "activity": [
+        "Insert activity here"
+    ],
+    "clientId": "CLIENT ID",
+    "guildId": "GUILD ID"
+}

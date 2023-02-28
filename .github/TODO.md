@@ -3,10 +3,10 @@
 - [ ] Overhaul help command
    - [ ] Make it use pages instead of a single message
    - [ ] Use action rows for catagory selection
-- [ ] Move commands to sorted folders
+- [X] Move commands to sorted folders
    - [X] Change command loader to load from folders (refer to task two of "Make command handlers")
 - [ ] Make command handlers
-   - [X] Load commands from folders (because yes) note: done, but not tested so not used
+   - [X] Load commands from folders
    - [ ] Hander for logging interactions and errors (for debugging)
    - [ ] Handler for blacklist system
    - [ ] Handler for XP system
@@ -58,4 +58,9 @@ For formatting things in the TODO file please use the following format:
 - [ ] System (rarely task)
     - [ ] Task or Sub-system
         - [ ] Sub Task
+            ...
 ```
+
+### Footnotes
+
+I (Ayden) will be working on the bot a lot more since I have tortured the website enough
