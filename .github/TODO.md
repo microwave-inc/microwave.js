@@ -19,9 +19,9 @@
    - [ ] Command for viewing xp of a user
    - [ ] Leaderboard (global) and show top 9, and your posistion
 - [ ] Owner stuff
-   - [ ] Command to reload the bot
-   - [ ] Command to view logs(?) Note: might just pull from the website or something
-   - [ ] Command to eval stuff
+   - [X] Command to reload the bot NOTE: For now it just shuts it down
+   - [ ] Command to view logs(?) Note: might just pull from the website or something (Killian should totally finish the admin stuff for the website so I can do this)
+   - [X] Command to eval stuff (UNTESTED)
    - [ ] System to check if user attempting to access these commands is within the devs ID's
       - [ ] Blacklist system (blacklist users from using the bot)
          - [ ] Add command to add/remove users from blacklist
