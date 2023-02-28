@@ -1,6 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders");
 const { MessageEmbed } = require("discord.js");
 const config = require("../../config.json");
+//const { xp } = require("../../handlers/xp-system.js");
 
 module.exports.help = {
     name: "shutdown",
@@ -24,6 +25,7 @@ module.exports.interaction = async (interaction, client) => {
         .setColor("#0099ff")
         .setTimestamp()
         interaction.reply({ embeds: [embed] });
+        //xp.connectionclose();
         client.destroy();
     } else {
         interaction.reply({ content: "Shutdown cancelled", ephemeral: true });

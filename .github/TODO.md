@@ -7,7 +7,7 @@
    - [X] Change command loader to load from folders (refer to task two of "Make command handlers")
 - [ ] Make command handlers
    - [X] Load commands from folders
-   - [ ] Hander for logging interactions and errors (for debugging)
+   - [ ] Hander for logging interactions and errors :memo: Required by task 2 in task list "Owner stuff"
    - [ ] Handler for blacklist system
    - [ ] Handler for XP system
    - [ ] Handler for Economy system
@@ -15,14 +15,18 @@
    - [ ] Add command to add/remove users from blacklist
    - [ ] Add command to view blacklist
    - [ ] Add file to log blacklisted users (most lilkely use a db file for this)
-- [ ] Add xp system (Will 100% use db file)
-   - [ ] Command for viewing xp of a user
+- [ ] Add xp system (Will 100% use db file) :warning: UNTESTED :warning:
+   - [X] Command for viewing xp of a user
    - [ ] Leaderboard (global) and show top 9, and your posistion
+   - [ ] Owner stuff
+     - [X] Add XP/Levels to user
+     - [ ] Remove XP/Levels to user
 - [ ] Owner stuff
    - [X] Command to reload the bot NOTE: For now it just shuts it down
-   - [ ] Command to view logs(?) Note: might just pull from the website or something (Killian should totally finish the admin stuff for the website so I can do this)
-   - [X] Command to eval stuff (UNTESTED)
-   - [ ] System to check if user attempting to access these commands is within the devs ID's
+   - [ ] Command to view logs(?) Note: might just pull from the website or something
+     - [ ] Log commands and errors (Referance task two in "Make command handlers") 
+   - [X] Command to eval stuff :warning: UNTESTED :warning:
+   - [X] System to check if user attempting to access these commands is within the devs ID's // Handled by the commands themselves for now
       - [ ] Blacklist system (blacklist users from using the bot)
          - [ ] Add command to add/remove users from blacklist
          - [ ] Add command to view blacklist
