@@ -13,7 +13,7 @@ module.exports.interaction = async (interaction, client) => {
     const embed = new MessageEmbed()
         .setColor("#FFFFFE")
         .setTitle("Coinflip")
-        .setURL("https://microwavebot.tech/discord")
+        //.setURL("https://microwavebot.tech/discord")
         .setTitle("**Coinflip:**")
         .setColor("#9603fd")
         .addFields({ name: "Result", value: `${Math.floor(Math.random() * 2) == 0 ? "Heads" : "Tails"}` })
