@@ -8,25 +8,31 @@ module.exports.help = {
     cat: "Owner",
     description: "Shuts down the bot",
     aliases: "",
-    data: new SlashCommandBuilder().setName("shutdown").setDescription("Shuts down the bot").addStringOption( option => {
+    data: new SlashCommandBuilder().setName("shutdown").setDescription("Shuts down the bot").addStringOption(option => {
         return option
-        .setName("confirm")
-        .setDescription("Confirm the shutdown")
-        .setRequired(true)
-        .addChoices({name: "Yes", value: "Yes"}, {name: "No", value: "No"})
-    })};
+            .setName("confirm")
+            .setDescription("Confirm the shutdown")
+            .setRequired(true)
+            .addChoices({ name: "Yes", value: "Yes" }, { name: "No", value: "No" })
+    })
+};
 
 module.exports.interaction = async (interaction, client) => {
     const confirm = interaction.options.getString("confirm");
-    if (confirm === "Yes" && interaction.user.id == config.ownerID) {
-        const embed = new MessageEmbed()
-        .setTitle("Shutdown")
-        .setDescription("Shutting down...")
-        .setColor("#0099ff")
-        .setTimestamp()
-        interaction.reply({ embeds: [embed] });
-        //xp.connectionclose();
-        client.destroy();
+    if (confirm === "Yes") {
+        if (interaction.user.id == config.ownerID) { // Need to fix this check
+            const embed = new MessageEmbed()
+                .setTitle("Shutdown")
+                .setDescription("Shutting down...")
+                .setColor("#0099ff")
+                .setTimestamp()
+            interaction.reply({ embeds: [embed] });
+            //xp.connectionclose();
+            client.destroy();
+        }
+        else {
+            interaction.reply({ content: "You are not a wizard harry!", ephemeral: true });
+        }
     } else {
         interaction.reply({ content: "Shutdown cancelled", ephemeral: true });
     }

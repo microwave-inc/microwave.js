@@ -15,7 +15,7 @@ module.exports.help = {
     })};
 
 module.exports.interaction = async (interaction, client) => {
-if (interaction.user.id != config.ownerID) {
+if (interaction.user.id in config.ownerID) { // This code totally didn't let let anyone eval before, oh and I need to fix this check
     if (interaction.options.getString("code") === "") 
     {
         return interaction.reply({ content: "You need to provide code to evaluate!", ephemeral: true });
@@ -29,7 +29,7 @@ if (interaction.user.id != config.ownerID) {
         evalresponse = eval(code),
         time = Date.now() - start;
     
-    return interaction.reply(`**Response:**\n\`\`\`js\n${evalresponse}\`\`\`In ${time}ms.`)
+    return interaction.reply(`**Response:**\n\`\`\`js\n${evalresponse}\`\`\`In ${time}ms.`) // Returns undefined for evalresponse
     };
 }
 else {
