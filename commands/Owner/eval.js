@@ -15,7 +15,16 @@ module.exports.help = {
     })};
 
 module.exports.interaction = async (interaction, client) => {
-if (interaction.user.id in config.ownerID) { // This code totally didn't let let anyone eval before, oh and I need to fix this check
+
+function ownercheck() {
+    if (config.ownerID.includes(interaction.user.id)) {
+        return true
+    }
+    else {
+        return false
+    }
+};
+if (ownercheck() != false) { // If not false then ...
     if (interaction.options.getString("code") === "") 
     {
         return interaction.reply({ content: "You need to provide code to evaluate!", ephemeral: true });

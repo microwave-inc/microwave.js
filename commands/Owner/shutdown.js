@@ -18,9 +18,17 @@ module.exports.help = {
 };
 
 module.exports.interaction = async (interaction, client) => {
+    function ownercheck() {
+        if (config.ownerID.includes(interaction.user.id)) {
+            return true
+        }
+        else {
+            return false
+        }
+    };
     const confirm = interaction.options.getString("confirm");
     if (confirm === "Yes") {
-        if (interaction.user.id == config.ownerID) { // Need to fix this check
+        if (ownercheck() != false) { // If not false then ...
             const embed = new MessageEmbed()
                 .setTitle("Shutdown")
                 .setDescription("Shutting down...")
