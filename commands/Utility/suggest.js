@@ -6,6 +6,7 @@ module.exports.help = {
     cat: "Utility",
     description: "Suggest something to the devs",
     aliases: "",
+    cmdid: "1080020862335455325",
     data: new SlashCommandBuilder().setName("suggest").setDescription("Suggest something to the devs").addStringOption( option => {
         return option
         .setName("suggestion")

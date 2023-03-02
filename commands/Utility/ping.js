@@ -6,6 +6,7 @@ module.exports.help = {
   cat: "Utility",
   description: "The command to make sure everything is working",
   aliases: "pong",
+  cmdid: "1080020862335455324",
   data: new SlashCommandBuilder().setName("ping").setDescription("Pong!"),
 };
 

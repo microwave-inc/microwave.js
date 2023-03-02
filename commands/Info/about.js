@@ -13,6 +13,7 @@ module.exports.help = {
     cat: "Info",
     description: "Get information about the bot",
     aliases: "",
+    cmdid: "1080020862205427726",
     data: new SlashCommandBuilder().setName("about").setDescription("Get information about the bot"),
 }
 
