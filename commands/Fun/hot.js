@@ -5,6 +5,7 @@ module.exports.help = {
     cat: "Fun",
     description: "A random hotness calculator",
     aliases: "",
+    cmdid: "1080020862205427724",
     data: new SlashCommandBuilder().setName("hot").setDescription("A random hotness calculator").addUserOption(option => option.setName("user").setDescription("The user to calculate hotness for").setRequired(true)),
 }
 

@@ -6,6 +6,7 @@ module.exports.help = {
     cat: "Fun",
     description: "Rate something",
     aliases: "",
+    cmdid: "1080020862205427725",
     data: new SlashCommandBuilder()
     .setName("rate")
     .setDescription("Rate something")

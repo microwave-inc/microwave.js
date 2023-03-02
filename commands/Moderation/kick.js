@@ -6,6 +6,7 @@ module.exports.help = {
     cat: "Moderation",
     description: "Kicks a mentioned user",
     aliases: "",
+    cmdid: "1080020862205427729",
     data: new SlashCommandBuilder().setName("kick").setDescription("Kicks a mentioned user").addUserOption(option => {
         return option
         .setName("user")

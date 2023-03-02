@@ -6,6 +6,7 @@ module.exports.help = {
     cat: "Moderation",
     description: "Unbans a mentioned user",
     aliases: "",
+    cmdid: "1080020862335455322",
     data: new SlashCommandBuilder().setName("unban").setDescription("Unbans a mentioned user").addUserOption(option => {
         return option
         .setName("user")

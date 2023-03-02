@@ -6,6 +6,7 @@ module.exports.help = {
     cat: "Utility",
     description: "Get the avatar of you or someone else",
     aliases: "",
+    cmdid: "1080020862335455323",
     data: new SlashCommandBuilder().setName("avatar").setDescription("Get the avatar of you or someone else").addUserOption(option => {
         return option
             .setName("user")

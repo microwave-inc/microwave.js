@@ -8,6 +8,7 @@ module.exports.help = {
     cat: "Fun",
     description: "Get the Astronomy Picture of the Day",
     aliases: "",
+    cmdid: "1080020862205427722",
     data: new SlashCommandBuilder().setName("apod").setDescription("Get the Astronomy Picture of the Day").addIntegerOption(option => {
         return option
             .setName("year")

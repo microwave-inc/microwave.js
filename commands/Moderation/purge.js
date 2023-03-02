@@ -8,6 +8,7 @@ module.exports.help = {
     cat: "Moderation",
     description: "Purge a number of messages",
     aliases: "",
+    cmdid: "1080020862205427731",
     data: new SlashCommandBuilder().setName("purge").setDescription("Purge a number of messages").addNumberOption( option => {
         return option
             .setName("number")
