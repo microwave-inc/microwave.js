@@ -24,12 +24,14 @@ for (const folder of commandFolders) {
   for (const file of commandFiles) {
     const command = require(`./commands/${folder}/${file}`);
     const commandName = command.help.name.toLowerCase();
-    console.log(`Loaded command ${commandName}`);
+    console.log(`-----------------------------`);
+    console.log(`| Loaded command: ${commandName} |`);
+    console.log(`| Command category: ${command.help.cat} |`);
 
     client.commands.set(commandName, command);
     };
   };
-
+console.log(`----------------------------`)
 console.log("Successfully loaded commands to memory");
 
 /* // Commented out for now
