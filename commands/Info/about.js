@@ -31,7 +31,7 @@ module.exports.interaction = async (interaction, client) => {
         //.setURL("https://microwavebot.tech/discord")
         .setTitle("**Stats:**")
         .setColor("#9603fd")
-        .addField("⌚️ Uptime ", `${duration}`, true)
+        .addField("⌚️ Uptime ", `${duration}`, true) // Need to update this embed
         .addField("⏳ API Latency", `${(client.ws.ping)}ms`,true)  
         .addField("📝 Mem Usage", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`, true)
         .addField("🤖 Node", `${process.version}`, true)
