@@ -9,7 +9,7 @@ Config.json layout:
     ],
     "clientId": "CLIENT ID",
     "guildId": "GUILD ID",
-    "ownerID": : [
+    "ownerID" : [
     "ID HERE"
     ]
 }
