@@ -8,7 +8,10 @@ Config.json layout:
         "Insert activity here"
     ],
     "clientId": "CLIENT ID",
-    "guildId": "GUILD ID"
+    "guildId": "GUILD ID",
+    "ownerID: : [
+    "ID HERE"
+    ]
 }
 ```
 
