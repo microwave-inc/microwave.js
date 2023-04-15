@@ -1,1 +1,1 @@
-// Make logger system
+// Moving over to index.js

@@ -72,6 +72,7 @@ client.on("interactionCreate", async (interaction) => {
 
   try {
     await command.interaction(interaction, client);
+    console.log(`Command ${interaction.commandName} was ran by ${interaction.user.tag} (${interaction.user.id})`); // Logs the command
   } catch (error) {
     console.error(error);
     await interaction.reply({
