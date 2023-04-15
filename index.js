@@ -62,6 +62,11 @@ client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
   const command = client.commands.get(interaction.commandName);
+  const blacklistjson = require("./blacklist.json");
+
+  if (blacklistjson.includes(interaction.user.id)) {
+    interaction.reply({ content: "You are blacklisted from using this bot. \n\n You can appeal in the main discord.", ephemeral: true })
+  }; // checks if user is blacklisted
 
   if (!command) return;
 
