@@ -61,10 +61,9 @@ module.exports.interaction = async (interaction, client) => {
     fetch(api)
     .then(response => response.json()) // Get the json
     .then(data => { // Set all the vars from the JSON file
-        image = data.hdurl;
-        title = data.title;
-        explanation = data.explanation; // This will prob not be used
-        date = data.date;
+        const image = data.hdurl;
+        const title = data.title;
+        const date = data.date;
 
         const embed = new MessageEmbed()
         if (title) {
