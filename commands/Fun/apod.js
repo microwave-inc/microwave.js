@@ -28,6 +28,7 @@ module.exports.help = {
 module.exports.interaction = async (interaction, client) => {
     const apikey = config.nasa; // Not sure if this works.
     var api
+    let api = `https://api.nasa.gov/planetary/apod?api_key=${apikey}`; // Set the API URL so shit stops complaining
 
     // Date options
     let year = interaction.options.getInteger("Year");
@@ -72,7 +73,9 @@ module.exports.interaction = async (interaction, client) => {
         .setImage(image)
 
         interaction.reply({embeds: [embed]}); // Hopefully this sends the embed
-    });
+    }).catch( err => {
+        interaction.reply("An error occured, please try again later.")
+    })
 };
 
 //If normal command
