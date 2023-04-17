@@ -29,11 +29,11 @@ module.exports.interaction = async (interaction, client) => {
   );
 
   await interaction.reply({ content: "Pong!", components: [row] });
-  const filter = i => i.customId === 'latency' && i.user.id === interaction.user.id;
+  /*const filter = i => i.customId === 'latency' && i.user.id === interaction.user.id;
   const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
   collector.on('collect', async i => {
     await i.update({ content: `🏓Latency is ${Date.now() - interaction.createdTimestamp}ms`, components: [rowdisabled] }).catch(err => {console.log(err); return})
-  });
+  });*/
 };
 
 //If normal command

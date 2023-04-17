@@ -64,7 +64,7 @@ module.exports.interaction = async (interaction, client) => {
         const image = data.hdurl;
         const title = data.title;
         const date = data.date;
-        console.log(`Date: ${date}\nTitle: ${title}\nImage: ${image}`)
+        // console.log(`Date: ${date}\nTitle: ${title}\nImage: ${image}`)
 
         const embed = new MessageEmbed()
         if (title) {
