@@ -28,7 +28,7 @@ module.exports.interaction = async (interaction, client) => {
           .setDisabled(true),
   );
 
-  await interaction.reply({ content: "Pong!", components: [row] });
+  await interaction.reply({ content: "Pong!", /*components: [row] */});
   /*const filter = i => i.customId === 'latency' && i.user.id === interaction.user.id;
   const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
   collector.on('collect', async i => {
