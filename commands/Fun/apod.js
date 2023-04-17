@@ -67,9 +67,13 @@ module.exports.interaction = async (interaction, client) => {
         date = data.date;
 
         const embed = new MessageEmbed()
-        .setTitle(title)
-        .setDescription(`date: ${date}`)
-        .setImage(image)
+        if (title) {
+            embed.setTitle(`${title}`)
+        }
+        if (date) {
+        embed.setDescription(`date: ${date}`)
+        }
+        embed.setImage(image)
 
         interaction.reply({embeds: [embed]}); // Hopefully this sends the embed
     }).catch( err => {
