@@ -74,6 +74,7 @@ module.exports.interaction = async (interaction, client) => {
         interaction.reply({embeds: [embed]}); // Hopefully this sends the embed
     }).catch( err => {
         interaction.reply("An error occured, please try again later.")
+        console.log(err)
     })
 };
 
