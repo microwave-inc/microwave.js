@@ -30,7 +30,7 @@ module.exports = {
 module.exports.execute = async (interaction) => {
     const user = interaction.options.getUser('user');
     const subcommand = interaction.options.getSubcommand();
-    const blacklistjson = require('../../blacklist.json');
+    const blacklistjson = require('../blacklist.json');
     const executer = interaction.user.id;
     const config = require('../../config.json');
 
