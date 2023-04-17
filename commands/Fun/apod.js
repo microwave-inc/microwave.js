@@ -27,8 +27,7 @@ module.exports.help = {
 //If interaction command
 module.exports.interaction = async (interaction, client) => {
     const apikey = config.nasa; // Not sure if this works.
-    var api
-    let api = `https://api.nasa.gov/planetary/apod?api_key=${apikey}`; // Set the API URL so shit stops complaining
+    const api = `https://api.nasa.gov/planetary/apod?api_key=${apikey}`; // Set the API URL so shit stops complaining
 
     // Date options
     let year = interaction.options.getInteger("Year");
