@@ -27,13 +27,13 @@ module.exports.help = {
 //If interaction command
 module.exports.interaction = async (interaction, client) => {
     const apikey = config.nasa; // Not sure if this works.
-    const api = `https://api.nasa.gov/planetary/apod?api_key=${apikey}`; // Set the API URL so shit stops complaining
+    var api = `https://api.nasa.gov/planetary/apod?api_key=${apikey}`; // Set the API URL so shit stops complaining
 
     // Date options
     let year = interaction.options.getInteger("Year");
     let month = interaction.options.getInteger("Month");
     let day = interaction.options.getInteger("Day");
-
+/*
     if (year != null) {
         if (month != null) {
             if (day != null) {
@@ -55,7 +55,16 @@ module.exports.interaction = async (interaction, client) => {
     } else {
         let api = `https://api.nasa.gov/planetary/apod?api_key=${apikey}`;
     } // This is a mess, but it should work..... I need to K.I.S.S. (Keep It Simple Stupid)
+*/
 
+    if (year != null || month != null || day != null) {
+        if (year < 1995 && month < 6 && day < 16) {
+            interaction.reply("Sorry, but the APOD API does not support dates before June 16, 1995.");
+        }
+        else {
+            let api = `https://api.nasa.gov/planetary/apod?api_key=${apikey}&date=${year}-${month}-${day}`;
+        }
+    } // I did infact K.I.S.S. (Keep It Simple Stupid) this time, much better code.
 
 
     fetch(api)

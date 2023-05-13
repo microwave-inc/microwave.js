@@ -1,11 +1,13 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
+const config = require('../config.json');
+const fetch = require('node-fetch');
 
 module.exports = {
     data: new SlashCommandBuilder()
         .setName('blacklist')
         .setDescription('Blacklist a user from using the bot.')
-        .addSubCommand(subcommand =>
+        .addSubcommand(subcommand =>
             subcommand
                 .setName('add')
                 .setDescription('Add a user to the blacklist.')
@@ -13,72 +15,49 @@ module.exports = {
                     option.setName('user')
                         .setDescription('The user to blacklist.')
                         .setRequired(true)))
-        .addSubCommand(subcommand =>
+        .addSubcommand(subcommand =>
             subcommand
                 .setName('remove')
                 .setDescription('Remove a user from the blacklist.')
                 .addUserOption(option =>
                     option.setName('user')
                         .setDescription('The user to remove from the blacklist.')
-                        .setRequired(true)))
-        .addSubCommand(subcommand =>
-            subcommand
-                .setName('list')
-                .setDescription('List all blacklisted users.')),
+                        .setRequired(true))),
+
 };
 
-module.exports.execute = async (interaction) => {
+module.exports.interaction = async (interaction, client) => {
     const user = interaction.options.getUser('user');
+    const apiurl = "127.0.0.1/api/v1/blacklist"; // Private API URL
+    const apikey = config.apikey;
     const subcommand = interaction.options.getSubcommand();
-    const blacklistjson = require('../blacklist.json');
-    const executer = interaction.user.id;
-    const config = require('../../config.json');
+    const member = interaction.member;
+    const config = require('../config.json');
 
-    if (config.ownerID.includes(executer)) {
+    if (config.includes(member.id)) {
         if (subcommand === 'add') {
-            if (blacklistjson.includes(user.id)) {
-                const embed = new MessageEmbed()
-                    .setColor('#ff0000')
-                    .setTitle('Error')
-                    .setDescription('That user is already blacklisted.')
-                return interaction.reply({ embeds: [embed] })
+            const add = await fetch(apiurl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': apikey,
+                },
+                body: JSON.stringify({
+                    user: user.id,
+                }),
+            });
+            const addjson = await add.json();
+            if (addjson.success === true) {
+                interaction.reply(`Successfully added ${user.tag} to the blacklist.`);
             } else {
-                blacklistjson.users.push(user.id);
-                const embed = new MessageEmbed()
-                    .setColor('#00ff00')
-                    .setTitle('Success')
-                    .setDescription('That user has been blacklisted.')
-                return interaction.reply({ embeds: [embed] })
+                interaction.reply(`Failed to add ${user.tag} to the blacklist.`);
             }
         }
         if (subcommand === 'remove') {
-            if (blacklistjson.includes(user.id)) {
-                blacklistjson.users.splice(blacklistjson.users.indexOf(user.id), 1);
-                const embed = new MessageEmbed()
-                    .setColor('#00ff00')
-                    .setTitle('Success')
-                    .setDescription('That user has been removed from the blacklist.')
-                return interaction.reply({ embeds: [embed] })
-            } else {
-                const embed = new MessageEmbed()
-                    .setColor('#ff0000')
-                    .setTitle('Error')
-                    .setDescription('That user is not blacklisted.')
-                return interaction.reply({ embeds: [embed] })
-            }
+            await interaction.reply({ content: `Still being worked on` })
         }
-        if (subcommand === 'list') {
-            const embed = new MessageEmbed()
-                .setColor('#00ff00')
-                .setTitle('Blacklisted Users')
-                blacklistjson.user.forEach(users => {
-                    embed.addFields(
-                        { name: 'User ID', value: users, inline: true }
-                    )
-                });
-            return interaction.reply({ embeds: [embed] })
-        }
+    } else {
+        interaction.reply(`You do not have permission to use this command.`);
     }
-}
 
-// IDK should fucking work
+};

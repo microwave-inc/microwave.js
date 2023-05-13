@@ -28,8 +28,8 @@
    - [X] Command to eval stuff :warning: UNTESTED :warning:
    - [X] System to check if user attempting to access these commands is within the devs ID's // Handled by the commands themselves for now
       - [ ] Blacklist system (blacklist users from using the bot)
-         - [ ] Add command to add/remove users from blacklist
-         - [ ] Add command to view blacklist
+         - [X] Add command to add/remove users from blacklist
+         - [X] Add command to view blacklist
          - [ ] Add file to log blacklisted users
          > :memo: The owner stuff might be heavy on the system but am unsure would have to test once it is out - Ayden
 - [ ] Economy system
