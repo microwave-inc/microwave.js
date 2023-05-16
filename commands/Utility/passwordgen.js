@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const random = require('random');
+const { random } = require('random');
 
 async function generatePassword(length) {
     let password = "";
