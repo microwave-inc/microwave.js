@@ -1,17 +1,23 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-const { random } = require('random');
 
-async function generatePassword(length) {
-    let password = "";
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+";
+function generatePassword(length) {
+    let password = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+';
+    const charactersLength = characters.length;
     for (let i = 0; i < length; i++) {
-        password += characters.charAt(random.int(0, characters.length));
+        const randomIndex = Math.floor(Math.random() * charactersLength);
+        password += characters.charAt(randomIndex);
     }
     return password;
-};
+}
 
-module.exports = {
+module.exports.help = {
+    name: 'passwordgen',
+    cat: 'Utility',
+    description: 'Generate a random password.',
+    aliases: "",
+    cmdid: "",
     data: new SlashCommandBuilder()
         .setName('passwordgen')
         .setDescription('Generate a random password.')
