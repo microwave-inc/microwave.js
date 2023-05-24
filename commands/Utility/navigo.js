@@ -71,7 +71,7 @@ module.exports.interaction = async (interaction, client) => {
                 embed.addFields({ name: "Github:", value: data.githubUrl})
             }
 
-            interaction.reply({ embeds: [embed], ephemeral: true })
+            interaction.reply({ embeds: [embed], ephemeral: false })
         };
     };
     if (subcommand === "roadmaps") {
@@ -90,7 +90,7 @@ module.exports.interaction = async (interaction, client) => {
                     { name: "Number of likes:", value: data.likes },
                 )
 
-            interaction.reply({ embeds: [embed], ephemeral: true })
+            interaction.reply({ embeds: [embed], ephemeral: false })
         }
     }
 
