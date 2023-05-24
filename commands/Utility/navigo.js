@@ -84,8 +84,8 @@ module.exports.interaction = async (interaction, client) => {
                 .setURL(`https://navigolearn.com/roadmaps/${id}`)
                 .setDescription(`${data.description}`)
                 .addFields(
-                    { name: "Created at:", value: `${isotomiliseconds(data.createdAt)}` },
-                    { name: "Updated last at:", value: `${isotomiliseconds(data.updatedAt)}` },
+                    { name: "Created at:", value: `${isotodiscord(data.createdAt)}` },
+                    { name: "Updated last at:", value: `${isotodiscord(data.updatedAt)}` },
                     { name: "Issue count:", value: data.issueCount },
                     { name: "Number of likes:", value: data.likes },
                 )
