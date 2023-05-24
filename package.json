@@ -4,7 +4,7 @@
     "@discordjs/rest": "^1.6.0",
     "cpu-stat": "^2.0.1",
     "discord": "^0.8.2",
-    "discord-api-types": "^0.36.2",
+    "discord-api-types": "^0.37.41",
     "discord.js": "^13.15.0",
     "dotenv": "^16.0.3",
     "moment": "^2.29.4",
