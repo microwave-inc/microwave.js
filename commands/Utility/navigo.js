@@ -84,8 +84,8 @@ module.exports.interaction = async (interaction, client) => {
                 .setURL(`https://navigolearn.com/roadmaps/${id}`)
                 .setDescription(`${data.description}`)
                 .addFields(
-                    { name: "Created at:", value: `<t:${isotomiliseconds(data.createdAt)}:R>` },
-                    { name: "Updated last at:", value: `<t:${isotomiliseconds(data.updatedAt)}:R>` },
+                    { name: "Created at:", value: `${isotomiliseconds(data.createdAt)}` },
+                    { name: "Updated last at:", value: `${isotomiliseconds(data.updatedAt)}` },
                     { name: "Issue count:", value: data.issueCount },
                     { name: "Number of likes:", value: data.likes },
                 )
@@ -96,16 +96,19 @@ module.exports.interaction = async (interaction, client) => {
 
 };
 
-function isotomiliseconds(input) {
-/**
- * Converts ISO 000Z to miliseconds
- * 
- * @param {number} ISO 000Z
- * @returns {number} miliseconds
- */
-
-const inputdate = new Date(input);
-const miliseconds = inputdate.getTime();
-return miliseconds;
-
-}
+function isotodiscord(input) {
+    /**
+     * Converts ISO 8601 timestamp to Discord compatible timestamp
+     * 
+     * @param {string} input - ISO 8601 timestamp
+     * @returns {string} Discord compatible timestamp
+     */
+    
+    var myDate = new Date(input);
+    var unixTime = myDate.getTime() / 1000;
+    var discordTime = "<t:" + Math.floor(unixTime) + ":R>";
+    
+    return discordTime;
+  }
+  
+  
