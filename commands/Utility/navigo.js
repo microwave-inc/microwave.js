@@ -38,11 +38,10 @@ module.exports.help = {
 module.exports.interaction = async (interaction, client) => {
     const subcommand = interaction.options.getSubcommand();
     const id = interaction.options.getInteger("id");
-    const apistatus = await fetch(`https://navigolearn.com/api/users/${id}`)
     interaction.deferReply({ ephemeral: false }) // defer the reply incase the API takes a bit to respond
     if (subcommand === "users") {
         if (id) {
-            if (!apistatus.ok) { // Basically checks if user exists (0 or 100 will return a bad request)
+            if (userexists == false) { // Basically checks if user exists (0 or 100 will return a bad request)
                 const embed = new MessageEmbed()
                     .setTitle("Error")
                     .setDescription("That user doesn't exist.")
@@ -77,7 +76,7 @@ module.exports.interaction = async (interaction, client) => {
     };
     if (subcommand === "roadmaps") {
         if (id) {
-            if (apistatus.ok) {
+            if (roadmapexists == true) {
                 const api = await fetch(`https://navigolearn.com/api/roadmaps/${id}`)
                 const data = await api.json();
 
@@ -119,3 +118,24 @@ function isotodiscord(input) {
     return discordTime;
 }
 
+async function userexists(id) {
+    api = await fetch(`https://navigolearn.com/api/users/${id}`)
+    if (api.ok) {
+        if (api.json().error == "User not found.") {
+            return false
+        } else {
+            return true
+        }
+    }
+};
+
+async function roadmapexists(id) {
+    api = await fetch(`https://navigolearn.com/api/roadmaps/${id}`)
+    if (api.ok) {
+        if (api.json().error == "Roadmap does not exist.") {
+            return false
+        } else {
+            return true
+        }
+    }
+}
