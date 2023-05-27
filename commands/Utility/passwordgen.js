@@ -17,7 +17,7 @@ module.exports.help = {
     cat: 'Utility',
     description: 'Generate a random password.',
     aliases: "",
-    cmdid: "",
+    cmdid: "1108079546399473664",
     data: new SlashCommandBuilder()
         .setName('passwordgen')
         .setDescription('Generate a random password.')

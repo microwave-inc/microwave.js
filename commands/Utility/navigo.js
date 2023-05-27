@@ -7,7 +7,7 @@ module.exports.help = {
     name: "navigo",
     aliases: ["nav"],
     description: "Navigo subcommands",
-    cmdid: "",
+    //cmdid: "", // I won't be assigning one since it is a group of commands
     data: new SlashCommandBuilder()
         .setName("navigo")
         .setDescription("Navigo subcommands")
