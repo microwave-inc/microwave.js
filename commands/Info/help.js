@@ -27,7 +27,7 @@ function searchCommands(path, helpEmbed) {
           if (commandHelp.owneronly) {
             // Skip that command
           } else {
-            if (commandHelp.cmdid != undefined || commandHelp.cmdid != null || commandHelp.cmdid != "") {
+            if ( commandHelp.cmdid && commandHelp.cmdid != undefined || commandHelp.cmdid != null || commandHelp.cmdid != "") {
               helpEmbed.addFields({
                 name: `</${commandHelp.name}:${commandHelp.cmdid}>`,
                 value: `${commandHelp.description}`
