@@ -38,7 +38,8 @@ module.exports.help = {
 module.exports.interaction = async (interaction, client) => {
     const subcommand = interaction.options.getSubcommand();
     const id = interaction.options.getInteger("id");
-    const apistatus = await fetch (`https://navigolearn.com/api/users/${id}`)
+    const apistatus = await fetch(`https://navigolearn.com/api/users/${id}`)
+    interaction.deferReply({ ephemeral: true }) // defer the reply incase the API takes a bit to respond
     if (subcommand === "users") {
         if (id) {
             if (!apistatus.ok) { // Basically checks if user exists (0 or 100 will return a bad request)
@@ -46,7 +47,7 @@ module.exports.interaction = async (interaction, client) => {
                     .setTitle("Error")
                     .setDescription("That user doesn't exist.")
                     .setColor("RED")
-                interaction.reply({ embeds: [embed], ephemeral: true })
+                interaction.editReply({ embeds: [embed], ephemeral: true })
             }
             const api = await fetch(`https://navigolearn.com/api/users/${id}`)
             const data = await api.json();
@@ -62,35 +63,43 @@ module.exports.interaction = async (interaction, client) => {
                     { name: "Followers:", value: data.followerCount },
                     { name: "Following:", value: data.followingCount },
                     { name: "Roadmaps:", value: data.roadmapsCount },
-                //    { name: "Website:", value: data.blogUrl },
+                    //    { name: "Website:", value: data.blogUrl },
                 )
             if (data.blogUrl) {
                 embed.addFields({ name: "Website:", value: data.blogUrl })
             }
             if (data.githubLink == true) {
-                embed.addFields({ name: "Github:", value: data.githubUrl})
+                embed.addFields({ name: "Github:", value: data.githubUrl })
             }
 
-            interaction.reply({ embeds: [embed], ephemeral: false })
+            interaction.editReply({ embeds: [embed], ephemeral: false })
         };
     };
     if (subcommand === "roadmaps") {
         if (id) {
-            const api = await fetch(`https://navigolearn.com/api/roadmaps/${id}`)
-            const data = await api.json();
+            if (apistatus.ok) {
+                const api = await fetch(`https://navigolearn.com/api/roadmaps/${id}`)
+                const data = await api.json();
 
-            const embed = new MessageEmbed()
-                .setTitle(`${data.name}`)
-                .setURL(`https://navigolearn.com/roadmaps/${id}`)
-                .setDescription(`${data.description}`)
-                .addFields(
-                    { name: "Created at:", value: `${isotodiscord(data.createdAt)}` },
-                    { name: "Updated last at:", value: `${isotodiscord(data.updatedAt)}` },
-                    { name: "Issue count:", value: data.issueCount },
-                    { name: "Number of likes:", value: data.likes },
-                )
+                const embed = new MessageEmbed()
+                    .setTitle(`${data.name}`)
+                    .setURL(`https://navigolearn.com/roadmaps/${id}`)
+                    .setDescription(`${data.description}`)
+                    .addFields(
+                        { name: "Created at:", value: `${isotodiscord(data.createdAt)}` },
+                        { name: "Updated last at:", value: `${isotodiscord(data.updatedAt)}` },
+                        { name: "Issue count:", value: data.issueCount },
+                        { name: "Number of likes:", value: data.likes },
+                    )
 
-            interaction.reply({ embeds: [embed], ephemeral: false })
+                interaction.editReply({ embeds: [embed], ephemeral: false })
+            } else {
+                const embed = new MessageEmbed()
+                    .setTitle("Error")
+                    .setDescription("That roadmap doesn't exist.")
+                    .setColor("RED")
+                interaction.editReply({ embeds: [embed], ephemeral: true })
+            }
         }
     }
 
@@ -98,17 +107,15 @@ module.exports.interaction = async (interaction, client) => {
 
 function isotodiscord(input) {
     /**
-     * Converts ISO 8601 timestamp to Discord compatible timestamp
-     * 
+     * @description Converts ISO 8601 timestamp to Discord compatible timestamp
      * @param {string} input - ISO 8601 timestamp
      * @returns {string} Discord compatible timestamp
      */
-    
+
     var myDate = new Date(input);
     var unixTime = myDate.getTime() / 1000;
     var discordTime = "<t:" + Math.floor(unixTime) + ":R>";
-    
+
     return discordTime;
-  }
-  
-  
+}
+
