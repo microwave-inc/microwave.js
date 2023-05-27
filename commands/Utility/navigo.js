@@ -41,7 +41,7 @@ module.exports.interaction = async (interaction, client) => {
     interaction.deferReply({ ephemeral: false }) // defer the reply incase the API takes a bit to respond
     if (subcommand === "users") {
         if (id) {
-            if (userexists == false) { // Basically checks if user exists (0 or 100 will return a bad request)
+            if (userexists(id) == false) { // Basically checks if user exists (0 or 100 will return a bad request)
                 const embed = new MessageEmbed()
                     .setTitle("Error")
                     .setDescription("That user doesn't exist.")
@@ -76,7 +76,7 @@ module.exports.interaction = async (interaction, client) => {
     };
     if (subcommand === "roadmaps") {
         if (id) {
-            if (roadmapexists == true) {
+            if (roadmapexists(id) == true) {
                 const api = await fetch(`https://navigolearn.com/api/roadmaps/${id}`)
                 const data = await api.json();
 
