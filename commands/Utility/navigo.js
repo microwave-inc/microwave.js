@@ -39,7 +39,7 @@ module.exports.interaction = async (interaction, client) => {
     const subcommand = interaction.options.getSubcommand();
     const id = interaction.options.getInteger("id");
     const apistatus = await fetch(`https://navigolearn.com/api/users/${id}`)
-    interaction.deferReply({ ephemeral: true }) // defer the reply incase the API takes a bit to respond
+    interaction.deferReply({ ephemeral: false }) // defer the reply incase the API takes a bit to respond
     if (subcommand === "users") {
         if (id) {
             if (!apistatus.ok) { // Basically checks if user exists (0 or 100 will return a bad request)
