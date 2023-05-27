@@ -6,6 +6,7 @@ const config = require("../../config.json");
 module.exports.help = {
     name: "shutdown",
     cat: "Owner",
+    owneronly: true,
     description: "Shuts down the bot",
     aliases: "",
     data: new SlashCommandBuilder().setName("shutdown").setDescription("Shuts down the bot").addStringOption(option => {

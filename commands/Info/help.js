@@ -24,17 +24,21 @@ function searchCommands(path, helpEmbed) {
         const command = require(`../../${commandPath}`);
         const commandHelp = command.help;
         if (commandHelp) {
-          if (commandHelp.cmdid != undefined) {
-            helpEmbed.addFields({
-              name: `</${commandHelp.name}:${commandHelp.cmdid}>`,
-              value: `${commandHelp.description}`
-            });
-          }
-          else {
-            helpEmbed.addFields({
-              name: `/${commandHelp.name}`,
-              value: `${commandHelp.description}`,
-            });
+          if (commandHelp.owneronly) {
+            // Skip that command
+          } else {
+            if (commandHelp.cmdid != undefined || commandHelp.cmdid != null || commandHelp.cmdid != "") {
+              helpEmbed.addFields({
+                name: `</${commandHelp.name}:${commandHelp.cmdid}>`,
+                value: `${commandHelp.description}`
+              });
+            }
+            else {
+              helpEmbed.addFields({
+                name: `/${commandHelp.name}`,
+                value: `${commandHelp.description}`,
+              });
+            }
           }
         }
       }
