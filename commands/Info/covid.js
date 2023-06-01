@@ -21,7 +21,6 @@ module.exports.help = {
 
 module.exports.interaction = async (interaction, client) => {
     const country = interaction.options.getString("country");
-    const countries = await getCountries();
     const api = await fetch(`https://disease.sh/v3/covid-19/countries/${country}`)
 
     // Check if country is in json file
