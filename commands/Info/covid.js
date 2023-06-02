@@ -15,7 +15,7 @@ module.exports.help = {
         .addStringOption(option =>
             option.setName("country")
                 .setDescription("The country you want to get information about")
-                .setRequired(false)
+                .setRequired(true)
         )
 };
 
@@ -24,9 +24,12 @@ module.exports.interaction = async (interaction, client) => {
     const api = await fetch(`https://disease.sh/v3/covid-19/countries/${country}`)
 
     // Check if country is in json file
-    if (!api.status === 200 || api.status === 404) {
+    if (!api.status === 200) {
         interaction.reply({ content: "This country is not in the list", ephemeral: true });
-    } else {
+    } else if (api.status === 500) {
+        interaction.reply({ content: "An error occured while fetching the data", ephemeral: true });
+    }
+    else {
         await getapidata(country, interaction);
     }
 
@@ -55,7 +58,8 @@ module.exports.interaction = async (interaction, client) => {
                 { name: "Active", value: active, inline: true },
                 { name: "Critical", value: critical, inline: true },
                 { name: "Population", value: population, inline: true },
-                { name: "Continent", value: continent, inline: true }
+                { name: "Continent", value: continent, inline: true },
+                { name: "Pop. who had covid and lived", value: percentage(data.recovered, data.population), inline: true },
             )
             .setTimestamp()
             .setFooter({ text: `Requested by ${interaction.member.tag}` })
@@ -69,3 +73,16 @@ module.exports.interaction = async (interaction, client) => {
         return;
     }
 };
+
+ function percentage(a, b) {
+    /**
+     * @description Calculates percentage
+     * @param {number} a - First number (Smaller)
+     * @param {number} b - Second number (Bigger)
+     * @returns {string} Percentage
+     * @example percentage(1, 2) // 50%
+     */
+    const result = (a / b) * 100
+    const resultformatted = `${result.toFixed(2)}%`
+    return resultformatted
+}
