@@ -8,7 +8,7 @@ module.exports.help = {
     cat: "Info",
     description: "Get information about covid",
     aliases: "",
-    cmdid: "",
+    cmdid: "1113536903086620714",
     data: new SlashCommandBuilder()
         .setName("covid")
         .setDescription("Get information about covid")
@@ -22,19 +22,28 @@ module.exports.help = {
 module.exports.interaction = async (interaction, client) => {
     const country = interaction.options.getString("country");
     const api = await fetch(`https://disease.sh/v3/covid-19/countries/${country}`)
-
+    if (country == "global" || country == "world") { // Should check if country is global or world and change it to all so it doesn't return a 404
+        const country = "all"
+    };
     // Check if country is in json file
     if (!api.status === 200) {
         interaction.reply({ content: "This country is not in the list", ephemeral: true });
-    } else if (api.status === 500) {
+    } else if (api.status === 500 || api.status === 502 || api.status === 503 || api.status === 504) {
         interaction.reply({ content: "An error occured while fetching the data", ephemeral: true });
+    } else if (api.status === 404) {
+        interaction.reply({ content: "This country is not in the list", ephemeral: true });
     }
     else {
         await getapidata(country, interaction);
     }
 
     async function getapidata(country, interaction) {
-        const api = await fetch(`https://disease.sh/v3/covid-19/countries/${country}`)
+
+        if (country === "all") {
+            const api = await fetch(`https://disease.sh/v3/covid-19/all`)
+        } else {
+            const api = await fetch(`https://disease.sh/v3/covid-19/countries/${country}`)
+        }
         const data = await api.json()
 
         const flag = data.countryInfo.flag
@@ -50,7 +59,7 @@ module.exports.interaction = async (interaction, client) => {
         const embed = new MessageEmbed()
             .setColor("RANDOM")
             .setTitle(`Covid-19 stats for ${name}`)
-            .setThumbnail(flag)
+            //.setThumbnail(flag)
             .addFields(
                 { name: "Cases", value: cases, inline: true },
                 { name: "Deaths", value: deaths, inline: true },
@@ -63,6 +72,10 @@ module.exports.interaction = async (interaction, client) => {
             )
             .setTimestamp()
             .setFooter({ text: `Requested by ${interaction.member.tag}` })
+
+            if (data.countryInfo.flag) {
+                embed.setThumbnail(data.countryInfo.flag)
+            }
 
         // Check if interaction has already been replied or deferred
         if (interaction.deferred || interaction.replied) {

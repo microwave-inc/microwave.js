@@ -6,7 +6,7 @@ module.exports.help = {
     cat: "Info",
     description: "Search wikipedia",
     aliases: "",
-    cmdid: "",
+    cmdid: "1115326101242261555",
     data: new SlashCommandBuilder()
         .setName("wikipedia")
         .setDescription("Search wikipedia")
