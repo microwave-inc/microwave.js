@@ -36,7 +36,7 @@ module.exports.interaction = async (interaction, client) => {
         .addField("📝 Mem Usage", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} / ${(os.totalmem() / 1024 / 1024).toFixed(2)} MB`, true)
         .addField("🤖 Node", `${process.version}`, true)
         .addField("👾 Discord.js", `v${version}`, true)
-        .addField("🤖 Microwave bot version", `3.3.6c Sungsam`, true)
+        .addField("🤖 Microwave bot version", `3.3.7 Sungsam`, true)
         .addField("📁 Servers", `${client.guilds.cache.size}`, true)
         .addField("CPU", `\`${os.cpus().map(i => `${i.model}`)[0]}\``)
         .addField("CPU usage", `\`${percent.toFixed(2)}%\``, true)

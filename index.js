@@ -75,6 +75,7 @@ client.on("interactionCreate", async (interaction) => {
     console.log(`Command ${interaction.commandName} was ran by ${interaction.user.tag} (${interaction.user.id})`); // Logs the command
   } catch (error) {
     console.error(error);
+    if (interaction.deferred) {interaction.editReply({ content: "There was an error while executing this command!", ephemeral: true }); return};
     await interaction.reply({
       content: "There was an error while executing this command!",
       ephemeral: true,
