@@ -11,3 +11,8 @@ node_modules
 *.txt
 *abusable*
 not-finished
+*.jpg
+*.png
+*.gif
+*.jpeg
+*.webp

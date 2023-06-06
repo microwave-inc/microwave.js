@@ -27,7 +27,7 @@ module.exports.help = {
 //If interaction command
 module.exports.interaction = async (interaction, client) => {
     const apikey = config.nasa; // Not sure if this works.
-    var api = `https://api.nasa.gov/planetary/apod?api_key=${apikey}`; // Set the API URL so shit stops complaining
+    var api = await fetch(`https://api.nasa.gov/planetary/apod?api_key=${apikey}`); // Set the API URL so shit stops complaining
 
     // Date options
     let year = interaction.options.getInteger("Year");
@@ -65,30 +65,25 @@ module.exports.interaction = async (interaction, client) => {
             let api = `https://api.nasa.gov/planetary/apod?api_key=${apikey}&date=${year}-${month}-${day}`;
         }
     } // I did infact K.I.S.S. (Keep It Simple Stupid) this time, much better code.
+    if (api.status != 200) {
+        interaction.reply({ content: `The server returned something other than a 200, it returned a ${api.status}, try again later`, ephemeral: true });
+    }
 
+    const data = api.json();
 
-    fetch(api)
-    .then(response => response.json()) // Get the json
-    .then(data => { // Set all the vars from the JSON file
-        const image = data.hdurl;
-        const title = data.title;
-        const date = data.date;
-        // console.log(`Date: ${date}\nTitle: ${title}\nImage: ${image}`)
-
-        const embed = new MessageEmbed()
-        if (title) {
-            embed.setTitle(`${title}`)
+    const embed = new MessageEmbed()
+        .setColor("RANDOM")
+        .setTitle("Astronomy Picture of the Day")
+        .addFields(
+            { name: "Title", value: data.title, inline: true },
+            { name: "Date", value: data.date, inline: true }
+        )
+        if (data.media_type === "video") { // Check if they are using an image or video and set it accordingly.
+            embed.video(data.url)
+        } else {
+            embed.setImage(data.url)
         }
-        if (date) {
-        embed.setDescription(`date: ${date}`)
-        }
-        embed.setImage(image)
 
-        interaction.reply({embeds: [embed]}); // Hopefully this sends the embed
-    }).catch( err => {
-        interaction.reply("An error occured, please try again later.")
-        console.log(err)
-    })
 };
 
 //If normal command
