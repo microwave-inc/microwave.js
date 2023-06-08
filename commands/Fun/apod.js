@@ -68,8 +68,23 @@ module.exports.interaction = async (interaction, client) => {
     if (api.status != 200) {
         interaction.reply({ content: `The server returned something other than a 200, it returned a ${api.status}, try again later`, ephemeral: true });
     }
+    // Check if it is valid JSON
+    const isJson = (str) => {
+        try{
+           JSON.parse(str);
+        }catch (e){
+           //Error
+           //JSON is not okay
+           return false;
+        }
+      
+       return true;
+     }
 
     const data = api.json();
+    if (!isJson(api)) {
+        interaction.reply({ content: `The NASA API did not return valid JSON, the API might be down.`, ephemeral: true });
+    } // Check if it is valid JSON
 
     const embed = new MessageEmbed()
         .setColor("RANDOM")
