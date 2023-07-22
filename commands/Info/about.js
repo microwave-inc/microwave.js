@@ -42,6 +42,8 @@ module.exports.interaction = async (interaction, client) => {
         .addField("CPU usage", `\`${percent.toFixed(2)}%\``, true)
         .addField("Arch", `\`${os.arch()}\``, true)
         .addField("Platform", `\`\`${os.platform()}\`\``, true)
+        .addField("👥 Users", `${client.guilds.cache.reduce((a, b) => a + b.memberCount, 0)}`, true)
+        .addField(":link: Invite", "[Invite me](https://discord.com/api/oauth2/authorize?client_id=867964961417203743&permissions=8&scope=bot%20applications.commands)", true)
         .setTimestamp()
     interaction.reply({ embeds: [embed] });
 });

@@ -7,6 +7,7 @@ module.exports.help = {
     cat: "Owner",
     description: "Get a list of servers the bot is in",
     aliases: "",
+    owneronly: true,
     data:
         new SlashCommandBuilder()
             .setName("serverlist")
