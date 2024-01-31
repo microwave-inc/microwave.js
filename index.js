@@ -34,15 +34,6 @@ for (const folder of commandFolders) {
 console.log(`----------------------------`)
 console.log("Successfully loaded commands to memory");
 
-/* // Commented out for now
-const handlers = new Collection();
-for (const file of handlerFiles) {
-  const handler = require(`./handlers/${file}`);
-  handlers.set(handler.name, handler);
-  console.log(`Loaded handler ${handler.name}`);
-}
-*/
-
 
 client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -54,7 +45,7 @@ client.on("ready", () => {
     client.user.setActivity(
       `${config.activity[Math.floor(Math.random() * (config.activity.length - 1))]} | m!help`
     );
-  }, 60000); // Changed to 60 seconds due to the bot possibly being rate-limited
+  }, 5000);
 });
 
 // When slash commands are ran
@@ -62,11 +53,6 @@ client.on("interactionCreate", async (interaction) => {
   if (!interaction.isCommand()) return;
 
   const command = client.commands.get(interaction.commandName);
-  const blacklistjson = require("./blacklist.json");
-
-  /*if (blacklistjson.includes(interaction.user.id)) {
-    interaction.reply({ content: "You are blacklisted from using this bot. \n\n You can appeal in the main discord.", ephemeral: true })
-  }; // checks if user is blacklisted */
 
   if (!command) return;
 
@@ -83,23 +69,14 @@ client.on("interactionCreate", async (interaction) => {
   }
 });
 
-// When a message is sent
-client.on("messageCreate", async (message) => {
-  if (message.author.bot || !message.content.startsWith(config.prefix)) return;
+// Error handlers to prevent randomly closing
 
-  const args = message.content.slice(config.prefix.length).trim().split(/ +/g);
-  const commandName = args.shift().toLowerCase();
+client.on("error", (error) => {
+  console.log(`[ERROR] ` + error.stack);
+});
 
-  const command = client.commands.get(commandName) || client.aliases.get(commandName);
-
-  if (!command) return;
-
-  try {
-    await command.run(client, message, args);
-  } catch (error) {
-    console.error(error);
-    await message.reply("There was an error while executing this command!");
-  }
+client.on("warn", (info) => {
+  console.log(`[INFO] ` + info);
 });
 
 client.login(config.token);

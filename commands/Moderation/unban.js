@@ -27,15 +27,14 @@ module.exports.interaction = async (interaction, client) => {
             if (!user) {
                 return interaction.reply({ content: "Please mention a user to unban.", ephemeral: true });
             }
+            // If user was not banned
+            if (!interaction.guild.bans.cache.has(user.id)) {
+                return interaction.reply({ content: "This user is not banned.", ephemeral: true });
+            }
             await interaction.guild.members.unban(user.id).catch(err => {console.log(err); return})
             return interaction.reply({ content: `Successfully unbanned ${user.tag}` });
         }
     else {
         interaction.reply({ content: "You need `BAN_MEMBERS` permisions to run this command", ephemeral: true });
     }
-};
-
-//If normal command
-module.exports.run = async (client, message, args) => {
-    await message.channels.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!")
 };

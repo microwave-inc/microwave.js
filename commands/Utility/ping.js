@@ -28,15 +28,18 @@ module.exports.interaction = async (interaction, client) => {
           .setDisabled(true),
   );
 
-  await interaction.reply({ content: "Pong!", /*components: [row] */});
-  /*const filter = i => i.customId === 'latency' && i.user.id === interaction.user.id;
+  await interaction.reply({ content: "Pong!", components: [row]});
+  const filter = i => i.customId === 'latency' && i.user.id === interaction.user.id;
   const collector = interaction.channel.createMessageComponentCollector({ filter, time: 15000 });
   collector.on('collect', async i => {
-    await i.update({ content: `🏓Latency is ${Date.now() - interaction.createdTimestamp}ms`, components: [rowdisabled] }).catch(err => {console.log(err); return})
-  });*/
-};
+      await i.update({ content: `🏓Latency is ${Date.now() - interaction.createdTimestamp}ms`, components: [rowdisabled] });
+      collector.stop();
+  });
+  // ON timeout
+  collector.on('end', collected => {
+      if (collected.size == 0) {
+          interaction.editReply({ content: "Pong!", components: [rowdisabled] });
+      }
+  });
 
-//If normal command
-module.exports.run = async (client, message, args) => {
-  await message.channel.send(`🏓Latency is ${Date.now() - message.createdTimestamp}ms`);
 };

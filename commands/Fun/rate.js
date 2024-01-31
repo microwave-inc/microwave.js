@@ -37,7 +37,3 @@ module.exports.interaction = async (interaction, client) => {
 
     interaction.reply({ embeds: [embed] })
 }
-
-module.exports.run = async (client, message, args) => {
-    await message.channels.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!")
-}

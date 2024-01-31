@@ -36,10 +36,3 @@ module.exports.interaction = async (interaction, client) => {
         interaction.reply({ content: user.username + ` is ${hotness}% hot ` + getEmoji() }); // And yes I am lazy
     };
 }
-
-module.exports.run = async (client, message, args) => {
-    await message.channels.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!")
-};
-
-
-// Done by Ayden

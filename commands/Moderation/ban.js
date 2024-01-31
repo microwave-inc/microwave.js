@@ -30,6 +30,10 @@ module.exports.interaction = async (interaction, client) => {
             if (user === interaction.member) {
                 return interaction.reply({ content: "You can't ban yourself.", ephemeral: true });
             }
+            // If already banned
+            if (interaction.guild.bans.cache.has(user.id)) {
+                return interaction.reply({ content: "This user is already banned.", ephemeral: true });
+            }
             await interaction.guild.members.ban(user.id).catch(err => {console.log(err); return})
             return interaction.reply({ content: `Successfully banned ${user.tag}` });
         }

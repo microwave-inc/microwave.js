@@ -26,8 +26,3 @@ module.exports.interaction = async (interaction, client) => {
         .setImage(userID.displayAvatarURL({ format: "jpg", size: 4096 }));
     interaction.reply({  embeds: [embed] });
 };
-
-//If normal command
-module.exports.run = async (client, message, args) => {
-    await message.channels.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!")
-};

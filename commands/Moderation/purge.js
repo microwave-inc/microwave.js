@@ -40,7 +40,3 @@ module.exports.interaction = async (interaction, client) => {
         interaction.reply({ content: "You need `MANAGE_MESSAGES` permisions to run this command", ephemeral: true });
     }
 }
-
-module.exports.run = async (client, message, args) => {
-    await message.channels.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!")
-}

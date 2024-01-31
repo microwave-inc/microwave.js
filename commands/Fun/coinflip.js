@@ -14,14 +14,10 @@ module.exports.interaction = async (interaction, client) => {
     const embed = new MessageEmbed()
         .setColor("#FFFFFE")
         .setTitle("Coinflip")
-        //.setURL("https://microwavebot.tech/discord")
+        .setURL("https://microwavebot.com")
         .setTitle("**Coinflip:**")
         .setColor("#9603fd")
         .addFields({ name: "Result", value: `${Math.floor(Math.random() * 2) == 0 ? "Heads" : "Tails"}` })
         .setTimestamp()
     interaction.reply({ embeds: [embed] });
-}
-
-module.exports.run = async (client, message, args) => {
-    await message.channels.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!")
 }

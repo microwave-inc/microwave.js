@@ -52,7 +52,3 @@ module.exports.interaction = async (interaction, client) => {
         await interaction.followUp({ content: "You didn't submit a suggestion in time.", ephemeral: true });
     }
 }
-
-module.exports.run = async (message, client) => {
-    await message.channels.send("Hello there, as of now we are keeping this command a slash only commmand, we may allow the prefixed command soon... \n to keep up with the updates please join the support server!")
-}

@@ -52,8 +52,3 @@ module.exports.interaction = async (interaction, client, onlineSelector, idLogge
   searchCommands("./commands", helpEmbed);
   interaction.reply({ embeds: [helpEmbed], ephemeral: true });
 };
-
-// If normal command
-module.exports.run = async (client, message) => {
-  await message.channel.send("Hello! We have moved fully away from prefixed commands, please use the slash commands instead!");
-};
