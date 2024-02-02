@@ -1,4 +1,6 @@
-Config.json layout:
+# README
+
+### Config.json layout
 
 ```json
 {
@@ -12,13 +14,15 @@ Config.json layout:
     "ownerID" : [
     "ID HERE"
     ],
-    "nasa": ""
+    "nasa": "",
+    "heartbeatlink": ""
 }
 ```
 
-**Note:** To obtain a nasa api token go to the [NASA API](https://api.nasa.gov/) website
+> [!NOTE] \
+> To obtain the nasa api key go to https://api.nasa.gov/ and sign up for an api key. \
+> To obtain the heartbeat link go to your https://betteruptime.com/ account and get your heartbeat link.
 
 Make sure to rename `example.config.json` to `config.json` and fill everything in... ClientID and GuildID are for deploying commands
 
 If you need additional help don't be afraid to join the discord!
-
