@@ -19,7 +19,7 @@
 }
 ```
 
-> [!NOTE] \
+> [!NOTE]\
 > To obtain the nasa api key go to https://api.nasa.gov/ and sign up for an api key. \
 > To obtain the heartbeat link go to your https://betteruptime.com/ account and get your heartbeat link.
 
