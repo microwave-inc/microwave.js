@@ -102,8 +102,10 @@ client.on("warn", (info) => {
 // A task that runs every 5 minutes to let better uptime know bot is online via heartbeat
 setInterval(async function () {
   if (heartbeatlink === "none") {
+    // This pass shit for javascript makes me wanna kms
   }
 
+  try {
   await fetch(heartbeatlink, {
     method: "POST",
     headers: {
@@ -114,10 +116,10 @@ setInterval(async function () {
       status: "online",
     }),
   });
-
-  
-
   console.log("Sent heartbeat to better uptime")
+  } catch {
+    console.log('Heartbeat failed.');
+  }
 }, 300000);
 
 client.login(token);
